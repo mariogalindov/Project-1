@@ -1,12 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+    <!-- Link to Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Link to Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     
+
+    <title> Loteria </title>
+</head>
+
+<body>
+    <!-- Container 1. Welcome -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h1> Loteria Game </h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s3">
+                <!-- Here player will add his/her name -->
+                <h6> Player </h6>
+                <input placeholder="Type your name here" type="text">
+            </div>
+            <div class="col s6"></div>
+            <div class="col s3">
+                <!-- Start button. ID assigned: "startBtn" -->
+                <a class="waves-effect waves-light btn-large" id="startBtn"> START </a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Container 2. Loteria! -->
+
+    <div class=container>
+
+        <!-- Here lives our Loteria Card-Board ***TEAM, CUANTAS FILAS/COLUMNAS AÑADIMOS? 3x3 o 4x4? -->
+        <div class="row">
+            <div class="col s7">
+                <img src="https://via.placeholder.com/150">
+                <img src="https://via.placeholder.com/150">
+                <img src="https://via.placeholder.com/150">
+            </div>
+             <!-- Here lives the GIF for the card to play -->
+            <div class="col s5">
+                <img src="https://via.placeholder.com/150">
+            </div>
+        </div>
+        <!-- Here lives our Loteria Card-Board  -->
+        <div class="row">
+            <div class="col s7">
+                <img src="https://via.placeholder.com/150">
+                <img src="https://via.placeholder.com/150">
+                <img src="https://via.placeholder.com/150">
+            </div>
+            <div class="col s5">
+                <!-- Here will live the timer -->
+                <h4> 00:00 </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s7">
+                    <img src="https://via.placeholder.com/150">
+                    <img src="https://via.placeholder.com/150">
+                    <img src="https://via.placeholder.com/150">
+            </div><div class="col s5">
+            </div>
+        </div>
+    </div>
+
+    <!-- Container 3. Chat -->
+
+    <div class=container>
+
+        <div class="row">
+            <div class="col s3">
+        <!-- Here player types a message -->
+            <i class="tiny material-icons">message</i> <span> Chat </span>
+            <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Type your message here</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <!-- Send message button. ID assigned "sendBtn" -->
+            <a class="waves-effect waves-light btn-small" id="sendBtn"><i class="material-icons left">send</i>Send</a>
+
+            </div>
+            <div class="col s9">
+        <!-- ***Message to display here? -->
+            </div>
+        </div>
+
+    </div>
+
+
+
 </body>
+
 </html>
