@@ -69,14 +69,39 @@ var loteria = {
         //Here we'll have the random images placed in the board and in the selectedCard Div
     },
 
+    //This is the function that runs the countdown on the timer
     countdown: function(){
         loteria.seconds--;
-        $("#time").html(loteria.seconds);
+        var converted = timeConverter(loteria.seconds);
+        $("#time").html(converted);
+        console.log(converted);
         if(loteria.seconds<=0){
             console.log("Se acabó el tiempo");
             loteria.timeUp();
         }
+
+        //This function gives format to the countdown
+        function timeConverter(t) {
+
+            var minutes = Math.floor(t / 60);
+            var seconds = t - (minutes * 60);
+          
+            if (seconds < 10) {
+              seconds = "0" + seconds;
+            }
+          
+            if (minutes === 0) {
+              minutes = "00";
+            }
+            else if (minutes < 10) {
+              minutes = "0" + minutes;
+            }
+          
+            return minutes + ":" + seconds;
+          }
     },
+
+    
 
     timeUp: function(){
         clearInterval(timer);
