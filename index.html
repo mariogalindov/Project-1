@@ -40,34 +40,34 @@
         </div>
 
         <!-- Here lives our Loteria Card-Board ***TEAM, CUANTAS FILAS/COLUMNAS AÑADIMOS? 3x3 o 4x4? -->
-        <div class="row">
+        <div class="row" id="row1">
             <div class="col s7">
-                <img src="https://via.placeholder.com/150">
-                <img src="https://via.placeholder.com/150">
-                <img src="https://via.placeholder.com/150">
+                <img src="https://via.placeholder.com/150x200">
+                <img src="https://via.placeholder.com/150x200">
+                <img src="https://via.placeholder.com/150x200">
             </div>
              <!-- Here lives the GIF for the card to play -->
             <div class="col s5">
-                <img src="https://via.placeholder.com/150">
+                <img id="selectedCard" src="https://via.placeholder.com/150x200">
             </div>
         </div>
         <!-- Here lives our Loteria Card-Board  -->
-        <div class="row">
+        <div class="row" id="row2">
             <div class="col s7">
-                <img src="https://via.placeholder.com/150">
-                <img src="https://via.placeholder.com/150">
-                <img src="https://via.placeholder.com/150">
+                <img src="https://via.placeholder.com/150x200">
+                <img src="https://via.placeholder.com/150x200">
+                <img src="https://via.placeholder.com/150x200">
             </div>
             <div class="col s5">
                 <!-- Here will live the timer -->
-                <h4> 00:00 </h4>
+                <h4 id="time"> 00:05 </h4>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="row3">
             <div class="col s7">
-                    <img src="https://via.placeholder.com/150">
-                    <img src="https://via.placeholder.com/150">
-                    <img src="https://via.placeholder.com/150">
+                    <img src="https://via.placeholder.com/150x200">
+                    <img src="https://via.placeholder.com/150x200">
+                    <img src="https://via.placeholder.com/150x200">
             </div><div class="col s5">
             </div>
         </div>
@@ -91,6 +91,13 @@
         </div>
     </div>
 
+    <!-- JQuery script tag -->
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <!-- Link to Javascript file -->
+    <script type="text/javascript" src="app.js"></script>
 </body>
 
 </html>
