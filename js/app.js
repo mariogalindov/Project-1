@@ -314,18 +314,24 @@ $(document).ready(function () {
         }
     });
 
+    $('#nameInput').keypress(function (e) {
+        if (e.which == 13) {
+            startGame()
+        }
+    });
 
     $("#startBtn").on("click", function () {
+        startGame()
+    })
+
+    function startGame() {
         $("#welcomeContainer").attr("style", "display: none");
         $("#gameContainer").attr("style", "display: block");
         if ($("#nameInput").val().trim() !== "") {
             loteria.initialTrigger();
         }
-
-
-    })
-
-    //  Click handler for all elements with "clickable" class
+    }
+    
     $('body').on('click', '.clickableCard', function () {
         if (this.src === loteria.selectedObj.url) {
             console.log(this.id)
@@ -351,20 +357,4 @@ $(document).ready(function () {
             alert("Mal")
         }
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 })
