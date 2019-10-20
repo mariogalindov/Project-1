@@ -1,0 +1,32 @@
+USER STORIES
+
+WELCOME SCREEN ---- vamos a esconder esta pantalla cuando empiece el juego. 
+
+	1. Bienvenida, explicación del juego de loteria, música
+	2. User name -- input -- 
+	3. Dropdown para que el usuario elija contra cuantos quiere jugar ''' inicialmente vamos a tener sólo dos jugadores para la versión de prueba.
+	4. Start button -- cuando le das start se oculta el welcome screen.
+	5. 1 modal para que el jugador espere a los jugadores ' --- cuando estén ambos jugadores entonces nos manda al container de juego. 
+
+
+PLAYER SCREEN
+
+	1. BUTTON START NOS DETONA EL INICIO DEL JUEGO
+		- Listo
+	2. Las imágenes en el tablero están fijas.
+		- Listo
+	3. El gif va a cambiar cada 5 segundos --- el tiempo va a mostrarse en una progress bar.
+		- Listo
+
+COMO VA A JUGAR
+
+En el tablero se muestran 16 cartas diferentes.
+Automáticamente salen las cartas.
+
+	1. Va a mostrar una carta aleatoria - las cartas sólo pueden aparecer una sóla vez.
+	2. Si la carta está en el tablero del jugador, el jugador da click sobre la carta.
+	3. Si la carta y la imagen en la que dio click el jugador son iguales, aparece el frijolito.
+	4. Si la carta y la imagen en la que dio click el jugador no son iguales.
+	5. Si el tablero está lleno - gana.
+	6. Indica quien va a ser el ganador. 
+	7. Regresa a la pantalla de bienvenida. 
