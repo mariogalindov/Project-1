@@ -335,7 +335,7 @@ $(document).ready(function () {
 
             loteria.matches.push(this.id)
 
-            if (loteria.matches.length === 1) {
+            if (loteria.matches.length === 16) {
                 alert("You win!!!")
                 clearTimeout(timer);
                 for (let i = 0; i < loteria.matches.length; i++) {
