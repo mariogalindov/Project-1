@@ -12,18 +12,28 @@ WELCOME SCREEN ---- vamos a esconder esta pantalla cuando empiece el juego.
 PLAYER SCREEN
 
 	1. BUTTON START NOS DETONA EL INICIO DEL JUEGO
+		- Listo
 	2. Las imágenes en el tablero están fijas.
+		- Listo
 	3. El gif va a cambiar cada 5 segundos --- el tiempo va a mostrarse en una progress bar.
+		- Listo
 
 COMO VA A JUGAR
 
-En el tablero se muestran 9 cartas diferentes.
+En el tablero se muestran 16 cartas diferentes.
 Automáticamente salen las cartas.
 
 	1. Va a mostrar una carta aleatoria - las cartas sólo pueden aparecer una sóla vez.
+		- Listo
 	2. Si la carta está en el tablero del jugador, el jugador da click sobre la carta.
+		- Listo
 	3. Si la carta y la imagen en la que dio click el jugador son iguales, aparece el frijolito.
+		- Listo (Bueno, por el momento aparece "Bean"). Sustituir después por un frijolito.
 	4. Si la carta y la imagen en la que dio click el jugador no son iguales.
+		Qué debe pasar ??? Por el momento alert("Mal")
 	5. Si el tablero está lleno - gana.
+		- Listo. Por el momento: alert("You win!!!")
+		
 	6. Indica quien va a ser el ganador. 
-	7. Regresa a la pantalla de bienvenida. 
+	7. Regresa a la pantalla de bienvenida.
+		- Listo

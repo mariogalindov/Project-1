@@ -1,3 +1,17 @@
 #row {
     margin-top: 10px;
 }
+
+
+#gameContainer {
+    display: none;
+}
+
+
+.bean {
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
