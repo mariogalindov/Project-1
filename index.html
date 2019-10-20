@@ -9,17 +9,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Link to Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Firebase References -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-database.js"></script>
     <title> Loteria </title>
 </head>
 
 <body>
     <div class="container" id="welcomeContainer">
-    </div>
-    <div class="container" id="gameContainer">
         <div class="row">
             <div class="col s12">
                 <h1> Loteria Game </h1>
@@ -30,29 +30,32 @@
             <div class="col s3">
                 <!-- Here player will add his/her name -->
                 <h6> Player </h6>
-                <input placeholder="Type your name here" type="text">
+                <input id="nameInput" placeholder="Type your name here" type="text">
             </div>
             <div class="col s6"></div>
             <div class="col s3">
                 <!-- Start button. ID assigned: "startBtn" -->
-                <a class="waves-effect waves-light btn-large" id="startBtn"> START </a>
+                <a class="waves-effect waves-light btn-large disabled" id="startBtn"> START </a>
             </div>
         </div>
+    </div>
+    <div class="container" id="gameContainer">
 
-    <!-- Here lives our Loteria Card-Board -->
-    <div class="container">
+
+        <!-- Here lives our Loteria Card-Board -->
+        <div class="container">
             <div class="row" id="row1">
                 <div class="col m2">
-                    <img id="img1" src="https://via.placeholder.com/150x200">
+                    <img id="img1" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m2">
-                    <img id="img2" src="https://via.placeholder.com/150x200">
+                    <img id="img2" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m2">
-                    <img id="img3" src="https://via.placeholder.com/150x200">
+                    <img id="img3" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m2">
-                    <img id="img4" src="https://via.placeholder.com/150x200">
+                    <img id="img4" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m1"></div>
                 <!-- Random Card -->
@@ -61,44 +64,44 @@
                 </div>
                 <div class="col m1"></div>
             </div>
-    
+
             <div class="row" id="row2">
                 <div class="col m2">
-                    <img id="img5" src="https://via.placeholder.com/150x200">
+                    <img id="img5" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m2">
-                    <img id="img6" src="https://via.placeholder.com/150x200">
+                    <img id="img6" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m2">
-                    <img id="img7" src="https://via.placeholder.com/150x200">
+                    <img id="img7" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m2">
-                    <img id="img8" src="https://via.placeholder.com/150x200">
+                    <img id="img8" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m1"></div>
                 <!-- Here will live the timer, we can update the width based on the countdown -->
                 <div class="col m2">
                     <!-- <img width=150px height=50px src="https://cdn.pixabay.com/photo/2012/04/13/00/14/bar-31174_640.png" id="countDownTimer"> -->
+                    <!-- Prealoader (progess) from Materialize -->
                     <div class="progress">
-                            <div id="preloader" class="determinate" style="width: 100%"></div>
-                        </div>
-
+                        <div id="preloader" class="determinate" style="width: 100%"></div>
+                    </div>
                 </div>
                 <div class="col m1"></div>
-    
+
             </div>
             <div class="row" id="row3">
                 <div class="col m2">
-                    <img id="img9" src="https://via.placeholder.com/150x200">
+                    <img id="img9" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m2">
-                    <img id="img10" src="https://via.placeholder.com/150x200">
+                    <img id="img10" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m2">
-                    <img id="img11" src="https://via.placeholder.com/150x200">
+                    <img id="img11" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
-                <div class="col m2">  
-                    <img id="img12" src="https://via.placeholder.com/150x200">
+                <div class="col m2">
+                    <img id="img12" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m1"></div>
                 <div class="col m2"></div>
@@ -106,16 +109,16 @@
             </div>
             <div class="row" id="row3">
                 <div class="col m2">
-                    <img id="img13" src="https://via.placeholder.com/150x200">
+                    <img id="img13" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m2">
-                    <img id="img14" src="https://via.placeholder.com/150x200">
+                    <img id="img14" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m2">
-                    <img id="img15" src="https://via.placeholder.com/150x200">
+                    <img id="img15" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
-                <div class="col m2">  
-                    <img id="img16" src="https://via.placeholder.com/150x200">
+                <div class="col m2">
+                    <img id="img16" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m1"></div>
                 <div class="col m2"></div>
@@ -125,30 +128,29 @@
 
         <div class="row">
             <div class="col s3">
-        <!-- Here player types a message -->
-            <i class="tiny material-icons">message</i> <span> Chat </span>
-            <div class="form-group">
+                <!-- Here player types a message -->
+                <i class="tiny material-icons">message</i> <span> Chat </span>
+                <div class="form-group">
                     <label for="exampleFormControlTextarea1">Type your message here</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-            <!-- Send message button. ID assigned "sendBtn" -->
-            <a class="waves-effect waves-light btn-small" id="sendBtn"><i class="material-icons left">send</i>Send</a>
+                </div>
+                <!-- Send message button. ID assigned "sendBtn" -->
+                <a class="waves-effect waves-light btn-small" id="sendBtn"><i
+                        class="material-icons left">send</i>Send</a>
 
             </div>
             <div class="col s9">
-        <!-- ***Message to display here? -->
+                <!-- ***Message to display here? -->
             </div>
         </div>
     </div>
 
     <!-- JQuery script tag -->
-    <script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- Link to Javascript file -->
     <script type="text/javascript" src="js/app.js"></script>
-    
+
 </body>
 
 </html>

@@ -24,9 +24,16 @@ En el tablero se muestran 16 cartas diferentes.
 Automáticamente salen las cartas.
 
 	1. Va a mostrar una carta aleatoria - las cartas sólo pueden aparecer una sóla vez.
+		- Listo
 	2. Si la carta está en el tablero del jugador, el jugador da click sobre la carta.
+		- Listo
 	3. Si la carta y la imagen en la que dio click el jugador son iguales, aparece el frijolito.
+		- Listo (Bueno, por el momento aparece "Bean"). Sustituir después por un frijolito.
 	4. Si la carta y la imagen en la que dio click el jugador no son iguales.
+		Qué debe pasar ??? Por el momento alert("Mal")
 	5. Si el tablero está lleno - gana.
+		- Listo. Por el momento: alert("You win!!!")
+		
 	6. Indica quien va a ser el ganador. 
-	7. Regresa a la pantalla de bienvenida. 
+	7. Regresa a la pantalla de bienvenida.
+		- Listo
