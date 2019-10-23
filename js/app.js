@@ -1,221 +1,59 @@
 // This is the array that includes the object to iterate and retrieve the img src to insert in the buttons of the board and in the selected image div
 var images = [
-    {
-        url: "assets/images/elGallo.jpg",
-        dataName: "elGallo"
-    },
-    {
-        url: "assets/images/elDiablito.jpg",
-        dataName: "elDiablito"
-    },
-    {
-        url: "assets/images/laDama.jpg",
-        dataName: "laDama"
-    },
-    {
-        url: "assets/images/elCatrin.jpg",
-        dataName: "elCatrin"
-    },
-    {
-        url: "assets/images/elParaguas.jpg",
-        dataName: "elParaguas"
-    },
-    {
-        url: "assets/images/laSirena.jpg",
-        dataName: "laSirena"
-    },
-    {
-        url: "assets/images/laEscalera.jpg",
-        dataName: "laEscalera"
-    },
-    {
-        url: "assets/images/laBotella.jpg",
-        dataName: "laBotella"
-    },
-    {
-        url: "assets/images/elBarril.jpg",
-        dataName: "elBarril"
-    },
-    {
-        url: "assets/images/elArbol.jpg",
-        dataName: "elArbol"
-    },
-    {
-        url: "assets/images/elMelon.jpg",
-        dataName: "elMelon"
-    },
-    {
-        url: "assets/images/elValiente.jpg",
-        dataName: "elValiente"
-    },
-    {
-        url: "assets/images/elGorrito.jpg",
-        dataName: "elGorrito"
-    },
-    {
-        url: "assets/images/laMuerte.jpg",
-        dataName: "laMuerte"
-    },
-    {
-        url: "assets/images/laPera.jpg",
-        dataName: "laPera"
-    },
-    {
-        url: "assets/images/laBandera.jpg",
-        dataName: "laBandera"
-    },
-    {
-        url: "assets/images/elBandolon.jpg",
-        dataName: "elBandolon"
-    },
-    {
-        url: "assets/images/elVioloncello.jpg",
-        dataName: "elVioloncello"
-    },
-    {
-        url: "assets/images/laGarza.jpg",
-        dataName: "laGarza"
-    },
-    {
-        url: "assets/images/elPajaro.jpg",
-        dataName: "elPajaro"
-    },
-    {
-        url: "assets/images/laMano.jpg",
-        dataName: "laMano"
-    },
-    {
-        url: "assets/images/laBota.jpg",
-        dataName: "laBota"
-    },
-    {
-        url: "assets/images/laLuna.jpg",
-        dataName: "laLuna"
-    },
-    {
-        url: "assets/images/elCotorro.jpg",
-        dataName: "elCotorro"
-    },
-    {
-        url: "assets/images/elBorracho.jpg",
-        dataName: "elBorracho"
-    },
-    {
-        url: "assets/images/elNegrito.jpg",
-        dataName: "elNegrito"
-    },
-    {
-        url: "assets/images/elCorazon.jpg",
-        dataName: "elCorazon"
-    },
-    {
-        url: "assets/images/laSandia.jpg",
-        dataName: "laSandia"
-    },
-    {
-        url: "assets/images/elTambor.jpg",
-        dataName: "elTambor"
-    },
-    {
-        url: "assets/images/elCamaron.jpg",
-        dataName: "elCamaron"
-    },
-    {
-        url: "assets/images/lasJaras.jpg",
-        dataName: "lasJaras"
-    },
-    {
-        url: "assets/images/elMusico.jpg",
-        dataName: "elMusico"
-    },
-    {
-        url: "assets/images/laAraña.jpg",
-        dataName: "laAraña"
-    },
-    {
-        url: "assets/images/elSoldado.jpg",
-        dataName: "elSoldado"
-    },
-    {
-        url: "assets/images/laEstrella.jpg",
-        dataName: "laEstrella"
-    },
-    {
-        url: "assets/images/elCazo.jpg",
-        dataName: "elCazo"
-    },
-    {
-        url: "assets/images/elMundo.jpg",
-        dataName: "elMundo"
-    },
-    {
-        url: "assets/images/elApache.jpg",
-        dataName: "elApache"
-    },
-    {
-        url: "assets/images/elNopal.jpg",
-        dataName: "elNopal"
-    },
-    {
-        url: "assets/images/elAlacran.jpg",
-        dataName: "elAlacran"
-    },
-    {
-        url: "assets/images/laRosa.jpg",
-        dataName: "laRosa"
-    },
-    {
-        url: "assets/images/laCalavera.jpg",
-        dataName: "laCalavera"
-    },
-    {
-        url: "assets/images/laCampana.jpg",
-        dataName: "laCampana"
-    },
-    {
-        url: "assets/images/elCantarito.jpg",
-        dataName: "elCantarito"
-    },
-    {
-        url: "assets/images/elVenado.jpg",
-        dataName: "elVenado"
-    },
-    {
-        url: "assets/images/elSol.jpg",
-        dataName: "elSol"
-    },
-    {
-        url: "assets/images/laCorona.jpg",
-        dataName: "laCorona"
-    },
-    {
-        url: "assets/images/laChalupa.jpg",
-        dataName: "laChalupa"
-    },
-    {
-        url: "assets/images/elPino.jpg",
-        dataName: "elPino"
-    },
-    {
-        url: "assets/images/elPescado.jpg",
-        dataName: "elPescado"
-    },
-    {
-        url: "assets/images/laPalma.jpg",
-        dataName: "laPalma"
-    },
-    {
-        url: "assets/images/laMaceta.jpg",
-        dataName: "laMaceta"
-    },
-    {
-        url: "assets/images/elArpa.jpg",
-        dataName: "elArpa"
-    },
-    {
-        url: "assets/images/laRana.jpg",
-        dataName: "laRana"
-    },
+    {url: "assets/images/elGallo.jpg",dataName: "elGallo"},
+    {url: "assets/images/elDiablito.jpg",dataName: "elDiablito"},
+    {url: "assets/images/laDama.jpg",dataName: "laDama"},
+    {url: "assets/images/elCatrin.jpg",dataName: "elCatrin"},
+    {url: "assets/images/elParaguas.jpg",dataName: "elParaguas"},
+    {url: "assets/images/laSirena.jpg",dataName: "laSirena"},
+    {url: "assets/images/laEscalera.jpg",dataName: "laEscalera"},
+    {url: "assets/images/laBotella.jpg",dataName: "laBotella"},
+    {url: "assets/images/elBarril.jpg",dataName: "elBarril"},
+    {url: "assets/images/elArbol.jpg",dataName: "elArbol"},
+    {url: "assets/images/elMelon.jpg",dataName: "elMelon"},
+    {url: "assets/images/elValiente.jpg",dataName: "elValiente"},
+    {url: "assets/images/elGorrito.jpg",dataName: "elGorrito"},
+    {url: "assets/images/laMuerte.jpg",dataName: "laMuerte"},
+    {url: "assets/images/laPera.jpg",dataName: "laPera"},
+    {url: "assets/images/laBandera.jpg",dataName: "laBandera"},
+    {url: "assets/images/elBandolon.jpg",dataName: "elBandolon"},
+    {url: "assets/images/elVioloncello.jpg",dataName: "elVioloncello"},
+    {url: "assets/images/laGarza.jpg",dataName: "laGarza"},
+    {url: "assets/images/elPajaro.jpg",dataName: "elPajaro"},
+    {url: "assets/images/laMano.jpg",dataName: "laMano"},
+    {url: "assets/images/laBota.jpg",dataName: "laBota"},
+    {url: "assets/images/laLuna.jpg",dataName: "laLuna"},
+    {url: "assets/images/elCotorro.jpg",dataName: "elCotorro"},
+    {url: "assets/images/elBorracho.jpg",dataName: "elBorracho"},
+    {url: "assets/images/elNegrito.jpg",dataName: "elNegrito"},
+    {url: "assets/images/elCorazon.jpg",dataName: "elCorazon"},
+    {url: "assets/images/laSandia.jpg",dataName: "laSandia"},
+    {url: "assets/images/elTambor.jpg",dataName: "elTambor"},
+    {url: "assets/images/elCamaron.jpg",dataName: "elCamaron"},
+    {url: "assets/images/lasJaras.jpg",dataName: "lasJaras"},
+    {url: "assets/images/elMusico.jpg",dataName: "elMusico"},
+    {url: "assets/images/laAraña.jpg",dataName: "laAraña"},
+    {url: "assets/images/elSoldado.jpg",dataName: "elSoldado"},
+    {url: "assets/images/laEstrella.jpg",dataName: "laEstrella"},
+    {url: "assets/images/elCazo.jpg",dataName: "elCazo"},
+    {url: "assets/images/elMundo.jpg",dataName: "elMundo"},
+    {url: "assets/images/elApache.jpg",dataName: "elApache"},
+    {url: "assets/images/elNopal.jpg",dataName: "elNopal"},
+    {url: "assets/images/elAlacran.jpg",dataName: "elAlacran"},
+    {url: "assets/images/laRosa.jpg",dataName: "laRosa"},
+    {url: "assets/images/laCalavera.jpg",dataName: "laCalavera"},
+    {url: "assets/images/laCampana.jpg",dataName: "laCampana"},
+    {url: "assets/images/elCantarito.jpg",dataName: "elCantarito"},
+    {url: "assets/images/elVenado.jpg",dataName: "elVenado"},
+    {url: "assets/images/elSol.jpg",dataName: "elSol"},
+    {url: "assets/images/laCorona.jpg",dataName: "laCorona"},
+    {url: "assets/images/laChalupa.jpg",dataName: "laChalupa"},
+    {url: "assets/images/elPino.jpg",dataName: "elPino"},
+    {url: "assets/images/elPescado.jpg",dataName: "elPescado"},
+    {url: "assets/images/laPalma.jpg",dataName: "laPalma"},
+    {url: "assets/images/laMaceta.jpg",dataName: "laMaceta"},
+    {url: "assets/images/elArpa.jpg",dataName: "elArpa"},
+    {url: "assets/images/laRana.jpg",dataName: "laRana"},
 ]
 
 // This variable includes all the properties and values of the game, meaning variables to manipulate and functions.
