@@ -1,7 +1,10 @@
-#row {
-    margin-top: 10px;
-}
+.row {
+    
+    margin-left: -;
+    margin-bottom: -15;
+    margin-bottom: 5px;
 
+}
 
 #gameContainer {
     display: none;
