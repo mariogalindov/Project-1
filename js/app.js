@@ -1,4 +1,7 @@
 // This is the array that includes the object to iterate and retrieve the img src to insert in the buttons of the board and in the selected image div
+var usedIndexNum = []; //This array is used to control which cards have already been selected when populating the selectedOrder array
+var selectedOrder = []; //This array will be used to hold the index number of cards in the order that they will be showed to the users, it should be populated by the first user that signs in to the firebase and shared to the other so that every user sees the same carda in the same order 
+var playingOrder = 0; //This variable is used to get a count of the quantity of times the card has changed (it starts in 1), it is used to select the card from the selectedOrderArray
 var images = [
     {url: "assets/images/elGallo.jpg",dataName: "elGallo"},
     {url: "assets/images/elDiablito.jpg",dataName: "elDiablito"},
@@ -32,7 +35,7 @@ var images = [
     {url: "assets/images/elCamaron.jpg",dataName: "elCamaron"},
     {url: "assets/images/lasJaras.jpg",dataName: "lasJaras"},
     {url: "assets/images/elMusico.jpg",dataName: "elMusico"},
-    {url: "assets/images/laAraña.jpg",dataName: "laAraña"},
+    {url: "assets/images/laArana.jpg",dataName: "laArana"},
     {url: "assets/images/elSoldado.jpg",dataName: "elSoldado"},
     {url: "assets/images/laEstrella.jpg",dataName: "laEstrella"},
     {url: "assets/images/elCazo.jpg",dataName: "elCazo"},
@@ -66,7 +69,9 @@ var loteria = {
     //This function will be triggered when the user clicks the start button
     initialTrigger: function () {
         timer = setInterval(loteria.countdown, 1000);
-
+        
+        //HUGO: crear un if para validar que no existe ya esta array en el servidor, solo subirla al servidor con el primer usuario que la genere
+        this.createSelectedOrder();
 
         //Here we'll have the random images placed in the board and in the selectedCard Div
 
@@ -82,7 +87,7 @@ var loteria = {
 
         var usedURLs = []
 
-        for (var i = 1; i < 17; i++) {
+        for (var i = 1; i < 10; i++) {
             var URLtoPlace = images[Math.floor(Math.random() * images.length) + 1].url;
             console.log(URLtoPlace);
             if (!usedURLs.includes(URLtoPlace)) {
@@ -92,12 +97,31 @@ var loteria = {
         }
     },
 
+    // This method is used to create an array with the selected index order of cards so that all of the users see the same selected cards in the same order
+    createSelectedOrder: function(){
+        for(var i = 0; i < images.length; i++){
+            do {
+                var randomNumber = Math.floor(Math.random() * images.length) + 1;
+            }
+            while (!usedIndexNum.indexOf(randomNumber) && usedIndexNum.length<images.length);
+            selectedOrder.push(randomNumber);
+            usedIndexNum.push(randomNumber);
+            console.log("Selected order that the cards will be selected: " + selectedOrder);
+            console.log("The used index numbers are: " + usedIndexNum);
+        }
+    },
+    
     // This function selects a card
     displaySelectedCard: function () {
-        randomObj = images[Math.floor(Math.random() * images.length) + 1];
+        
+        randomObj = images[selectedOrder[playingOrder]];
         randomObjURL = randomObj.url;
         loteria.selectedObj = randomObj;
         $("#selectedCard").attr({ "src": randomObjURL, height: "200px", width: "150px" });
+        playingOrder++
+        if(playingOrder>selectedOrder.length){
+            playingOrder = 0;
+        }
     },
 
     //This is the function that runs the countdown on the timer
