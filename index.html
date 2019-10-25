@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <div class="container" id="welcomeContainer">
+    <div class="container" >
         <div class="row">
             <div class="col s12">
                 <h1> Loteria Game </h1>
@@ -39,11 +39,12 @@
             </div>
         </div>
     </div>
+
     <div class="container" id="gameContainer">
 
 
         <!-- Here lives our Loteria Card-Board -->
-        <div class="container">
+        <div class="container">  
             <div class="row" id="row1">
                 <div class="col m2">
                     <img id="img1" class="clickableCard" src="https://via.placeholder.com/150x200">
@@ -64,13 +65,13 @@
 
             <div class="row" id="row2">
                 <div class="col m2">
+                    <img id="img4" class="clickableCard" src="https://via.placeholder.com/150x200">
+                </div>
+                <div class="col m2">
                     <img id="img5" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m2">
                     <img id="img6" class="clickableCard" src="https://via.placeholder.com/150x200">
-                </div>
-                <div class="col m2">
-                    <img id="img7" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
                 <div class="col m1"></div>
                 <!-- Here will live the timer, we can update the width based on the countdown -->
@@ -86,24 +87,16 @@
             </div>
             <div class="row" id="row3">
                 <div class="col m2">
+                    <img id="img7" class="clickableCard" src="https://via.placeholder.com/150x200">
+                </div>
+                <div class="col m2">
+                    <img id="img8" class="clickableCard" src="https://via.placeholder.com/150x200">
+                </div>
+                <div class="col m2">
                     <img id="img9" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
-                <div class="col m2">
-                    <img id="img10" class="clickableCard" src="https://via.placeholder.com/150x200">
-                </div>
-                <div class="col m2">
-                    <img id="img11" class="clickableCard" src="https://via.placeholder.com/150x200">
-                </div>
                 <div class="col m1"></div>
-                <div class="col m2"></div>
-                <div class="col m1"></div>
-            </div>
-
-
-        </div>
-
-        <div class="row">
-            <div class="col s3">
+                <div class="col m2">
                 <!-- Here player types a message -->
                 <i class="tiny material-icons">message</i> <span> Chat </span>
                 <div class="form-group">
@@ -114,12 +107,15 @@
                 <a class="waves-effect waves-light btn-small" id="sendBtn"><i
                         class="material-icons left">send</i>Send</a>
 
+                </div>
+                <div class="col m3">
+
+                </div>
             </div>
-            <div class="col s9">
-                <!-- ***Message to display here? -->
-            </div>
+
+
         </div>
-    </div>
+ </div>
 
     <!-- JQuery script tag -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
