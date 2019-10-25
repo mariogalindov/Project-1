@@ -88,36 +88,35 @@ var loteria = {
         var usedURLs = []
 
         for (var i = 1; i < 10; i++) {
-            var URLtoPlace = images[Math.floor(Math.random() * images.length) + 1].url;
+            var randNum = Math.floor(Math.random() * images.length);
+            var URLtoPlace = images[randNum].url;
+            var dataNametoPlace = images[randNum].dataName;
             console.log(URLtoPlace);
             if (!usedURLs.includes(URLtoPlace)) {
                 usedURLs.push(URLtoPlace);
-                $("#img" + i).attr({ "src": URLtoPlace, height: "200px", width: "150px" });
+                $("#img" + i).attr({ "src": URLtoPlace, height: "200px", width: "150px", "dataname": dataNametoPlace });
             } else (i--)
         }
     },
 
     // This method is used to create an array with the selected index order of cards so that all of the users see the same selected cards in the same order
     createSelectedOrder: function(){
-        for(var i = 0; i < images.length; i++){
-            do {
-                var randomNumber = Math.floor(Math.random() * images.length) + 1;
-            }
-            while (!usedIndexNum.indexOf(randomNumber) && usedIndexNum.length<images.length);
+        for(var j = 0; j < images.length; j++){
+            var randomNumber = Math.floor(Math.random() * images.length);
+            if (!usedIndexNum.includes(randomNumber)){
             selectedOrder.push(randomNumber);
             usedIndexNum.push(randomNumber);
-            console.log("Selected order that the cards will be selected: " + selectedOrder);
-            console.log("The used index numbers are: " + usedIndexNum);
+            } else (j--);
         }
     },
-    
+
     // This function selects a card
     displaySelectedCard: function () {
-        
         randomObj = images[selectedOrder[playingOrder]];
         randomObjURL = randomObj.url;
+        randomObjDataName = randomObj.dataName;
         loteria.selectedObj = randomObj;
-        $("#selectedCard").attr({ "src": randomObjURL, height: "200px", width: "150px" });
+        $("#selectedCard").attr({ "src": randomObjURL, height: "200px", width: "150px", "dataName": randomObjDataName});
         playingOrder++
         if(playingOrder>selectedOrder.length){
             playingOrder = 0;
@@ -195,8 +194,7 @@ $(document).ready(function () {
     }
     
     $('body').on('click', '.clickableCard', function () {
-        if (this.src === loteria.selectedObj.url) {
-            console.log(this.id)
+        if ($(this).attr("dataname") === loteria.selectedObj.dataName) {
             $("#" + this.id).parent().append('<span id="' + this.id + 'newElement' + '" class="bean"><h1>Bean</h1></span>');
             $("#" + this.id).attr("class", "notClickableCard")
             $("#" + this.id).attr("style", "opacity: 0.3;")
