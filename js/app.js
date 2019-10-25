@@ -4,7 +4,7 @@ $(document).ready(function () {
     // This is the array that includes the object to iterate and retrieve the img src to insert in the buttons of the board and in the selected image div
     var usedIndexNum = []; //This array is used to control which cards have already been selected when populating the selectedOrder array
     var selectedOrder = []; //This array will be used to hold the index number of cards in the order that they will be showed to the users, it should be populated by the first user that signs in to the firebase and shared to the other so that every user sees the same carda in the same order 
-    var playingOrder = 0; //This variable is used to get a count of the quantity of times the card has changed (it starts in 1), it is used to select the card from the selectedOrderArray
+    var playingOrder = 0; //This variable is used to get a count of the quantity of times the card has changed (it starts in 0), it is used to select the card from the selectedOrderArray
     var images = [
         { url: "assets/images/elGallo.jpg", dataName: "elGallo" },
         { url: "assets/images/elDiablito.jpg", dataName: "elDiablito" },
@@ -110,22 +110,25 @@ $(document).ready(function () {
             for (var j = 0; j < images.length; j++) {
                 var randomNumber = Math.floor(Math.random() * images.length);
                 if (!usedIndexNum.includes(randomNumber)) {
-                    selectedOrder.push(randomNumber);
+                    // selectedOrder.push(randomNumber);
                     usedIndexNum.push(randomNumber);
                 } else (j--);
             }
+            console.log("usedIndexNum", usedIndexNum);
+            console.log("selectedOrder", selectedOrder);
         },
 
         // This function selects a card
         displaySelectedCard: function () {
-            randomObj = images[selectedOrder[playingOrder]];
+            // randomObj = images[selectedOrder[playingOrder]];
+            randomObj = images[usedIndexNum[playingOrder]];
             randomObjURL = randomObj.url;
             randomObjDataName = randomObj.dataName;
             loteria.selectedObj = randomObj;
             $("#selectedCard").attr({ "src": randomObjURL, height: "200px", width: "150px", "dataName": randomObjDataName });
             playingOrder++
             console.log("playingOrder: " + playingOrder)
-            if (playingOrder > (selectedOrder.length-1)) {
+            if (playingOrder > (usedIndexNum.length-1)) {
                 playingOrder = 0;
             }
         },
@@ -209,15 +212,22 @@ $(document).ready(function () {
 
             loteria.matches.push(this.id)
 
-            if (loteria.matches.length === 16) {
-                alert("You win!!!")
+            if (loteria.matches.length === 1) {
                 clearTimeout(timer);
+                clearInterval(timerForStatusBar);
+                alert("You win!!!")
                 for (let i = 0; i < loteria.matches.length; i++) {
                     $("#" + loteria.matches[i] + "newElement").html('');
                     $("#" + loteria.matches[i]).attr("class", "clickableCard")
                     $("#" + loteria.matches[i]).attr("style", "opacity: 1;")
                 }
                 loteria.matches = [];
+                usedIndexNum = [];
+                selectedOrder = [];
+                playingOrder = 0;
+                loteria.miliseconds = 0;
+                loteria.fixedMiliseconds = 0;
+                
                 $("#gameContainer").attr("style", "display: none");
                 $("#welcomeContainer").attr("style", "display: block");
             }
