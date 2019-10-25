@@ -66,14 +66,17 @@ $(document).ready(function () {
     var loteria = {
         timer: null,
         seconds: 5,
-        miliseconds: 50,
+        miliseconds: this.seconds * 10,
+        fixedMiliseconds: this.seconds * 10,
         matches: [],
         selectedObj: null,
 
         //This function will be triggered when the user clicks the start button
         initialTrigger: function () {
             timer = setInterval(loteria.countdown, 1000);
-
+            timerForStatusBar = setInterval(loteria.statusBar, 100);
+            this.miliseconds = this.seconds * 10;
+            this.fixedMiliseconds = this.seconds * 10;
             //HUGO: crear un if para validar que no existe ya esta array en el servidor, solo subirla al servidor con el primer usuario que la genere
             this.createSelectedOrder();
 
@@ -95,7 +98,6 @@ $(document).ready(function () {
                 var randNum = Math.floor(Math.random() * images.length);
                 var URLtoPlace = images[randNum].url;
                 var dataNametoPlace = images[randNum].dataName;
-                console.log(URLtoPlace);
                 if (!usedURLs.includes(URLtoPlace)) {
                     usedURLs.push(URLtoPlace);
                     $("#img" + i).attr({ "src": URLtoPlace, height: "200px", width: "150px", "dataname": dataNametoPlace });
@@ -127,13 +129,16 @@ $(document).ready(function () {
             }
         },
 
+        statusBar: function(){
+            loteria.miliseconds--;
+            $("#preloader").attr("style", "width: " + loteria.miliseconds * 2.5 + "%")
+        },
         //This is the function that runs the countdown on the timer
         countdown: function () {
 
             loteria.seconds--;
             var converted = timeConverter(loteria.seconds);
             // $("#time").html(converted);
-            $("#preloader").attr("style", "width: " + loteria.seconds * 25 + "%")
             console.log(converted);
             if (loteria.seconds <= 0) {
                 console.log("Se acabó el tiempo");
@@ -163,6 +168,7 @@ $(document).ready(function () {
 
         timeUp: function () {
             loteria.seconds = 5;
+            loteria.miliseconds = 50;
             loteria.displaySelectedCard();
         },
 
