@@ -63,12 +63,15 @@ var images = [
 var loteria = {
     timer: null,
     seconds: 5,
+    deciseconds: 50,
     matches: [],
     selectedObj: null,
 
     //This function will be triggered when the user clicks the start button
     initialTrigger: function () {
         timer = setInterval(loteria.countdown, 1000);
+        timerForStatusBar = setInterval(loteria.statusBar, 100);
+        console.log(loteria.deciseconds);
         
         //HUGO: crear un if para validar que no existe ya esta array en el servidor, solo subirla al servidor con el primer usuario que la genere
         this.createSelectedOrder();
@@ -123,13 +126,19 @@ var loteria = {
         }
     },
 
+    //Function to gradually unfill the time status bar
+    statusBar: function(){
+        loteria.deciseconds--;
+        console.log(loteria.deciseconds * 2.5);
+        $("#preloader").attr("style", "width: " + loteria.deciseconds * 2.5 + "%")
+    },
+
     //This is the function that runs the countdown on the timer
     countdown: function () {
 
         loteria.seconds--;
         var converted = timeConverter(loteria.seconds);
         // $("#time").html(converted);
-        $("#preloader").attr("style", "width: " + loteria.seconds * 25 + "%")
         console.log(converted);
         if (loteria.seconds <= 0) {
             console.log("Se acabó el tiempo");
