@@ -124,7 +124,8 @@ $(document).ready(function () {
             loteria.selectedObj = randomObj;
             $("#selectedCard").attr({ "src": randomObjURL, height: "200px", width: "150px", "dataName": randomObjDataName });
             playingOrder++
-            if (playingOrder > selectedOrder.length) {
+            console.log("playingOrder: " + playingOrder)
+            if (playingOrder > (selectedOrder.length-1)) {
                 playingOrder = 0;
             }
         },
