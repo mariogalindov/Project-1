@@ -6,60 +6,60 @@ $(document).ready(function () {
     // var selectedOrder = []; //This array will be used to hold the index number of cards in the order that they will be showed to the users, it should be populated by the first user that signs in to the firebase and shared to the other so that every user sees the same carda in the same order 
     var playingOrder = 0; //This variable is used to get a count of the quantity of times the card has changed (it starts in 0), it is used to select the card from the selectedOrderArray
     var images = [
-        { url: "assets/images/elGallo.jpg", dataName: "elGallo" },
-        { url: "assets/images/elDiablito.jpg", dataName: "elDiablito" },
-        { url: "assets/images/laDama.jpg", dataName: "laDama" },
-        { url: "assets/images/elCatrin.jpg", dataName: "elCatrin" },
-        { url: "assets/images/elParaguas.jpg", dataName: "elParaguas" },
-        { url: "assets/images/laSirena.jpg", dataName: "laSirena" },
-        { url: "assets/images/laEscalera.jpg", dataName: "laEscalera" },
-        { url: "assets/images/laBotella.jpg", dataName: "laBotella" },
-        { url: "assets/images/elBarril.jpg", dataName: "elBarril" },
-        { url: "assets/images/elArbol.jpg", dataName: "elArbol" },
-        { url: "assets/images/elMelon.jpg", dataName: "elMelon" },
-        { url: "assets/images/elValiente.jpg", dataName: "elValiente" },
-        { url: "assets/images/elGorrito.jpg", dataName: "elGorrito" },
-        { url: "assets/images/laMuerte.jpg", dataName: "laMuerte" },
-        { url: "assets/images/laPera.jpg", dataName: "laPera" },
-        { url: "assets/images/laBandera.jpg", dataName: "laBandera" },
-        { url: "assets/images/elBandolon.jpg", dataName: "elBandolon" },
-        { url: "assets/images/elVioloncello.jpg", dataName: "elVioloncello" },
-        { url: "assets/images/laGarza.jpg", dataName: "laGarza" },
-        { url: "assets/images/elPajaro.jpg", dataName: "elPajaro" },
-        { url: "assets/images/laMano.jpg", dataName: "laMano" },
-        { url: "assets/images/laBota.jpg", dataName: "laBota" },
-        { url: "assets/images/laLuna.jpg", dataName: "laLuna" },
-        { url: "assets/images/elCotorro.jpg", dataName: "elCotorro" },
-        { url: "assets/images/elBorracho.jpg", dataName: "elBorracho" },
-        { url: "assets/images/elNegrito.jpg", dataName: "elNegrito" },
-        { url: "assets/images/elCorazon.jpg", dataName: "elCorazon" },
-        { url: "assets/images/laSandia.jpg", dataName: "laSandia" },
-        { url: "assets/images/elTambor.jpg", dataName: "elTambor" },
-        { url: "assets/images/elCamaron.jpg", dataName: "elCamaron" },
-        { url: "assets/images/lasJaras.jpg", dataName: "lasJaras" },
-        { url: "assets/images/elMusico.jpg", dataName: "elMusico" },
-        { url: "assets/images/laArana.jpg", dataName: "laArana" },
-        { url: "assets/images/elSoldado.jpg", dataName: "elSoldado" },
-        { url: "assets/images/laEstrella.jpg", dataName: "laEstrella" },
-        { url: "assets/images/elCazo.jpg", dataName: "elCazo" },
-        { url: "assets/images/elMundo.jpg", dataName: "elMundo" },
-        { url: "assets/images/elApache.jpg", dataName: "elApache" },
-        { url: "assets/images/elNopal.jpg", dataName: "elNopal" },
-        { url: "assets/images/elAlacran.jpg", dataName: "elAlacran" },
-        { url: "assets/images/laRosa.jpg", dataName: "laRosa" },
-        { url: "assets/images/laCalavera.jpg", dataName: "laCalavera" },
-        { url: "assets/images/laCampana.jpg", dataName: "laCampana" },
-        { url: "assets/images/elCantarito.jpg", dataName: "elCantarito" },
-        { url: "assets/images/elVenado.jpg", dataName: "elVenado" },
-        { url: "assets/images/elSol.jpg", dataName: "elSol" },
-        { url: "assets/images/laCorona.jpg", dataName: "laCorona" },
-        { url: "assets/images/laChalupa.jpg", dataName: "laChalupa" },
-        { url: "assets/images/elPino.jpg", dataName: "elPino" },
-        { url: "assets/images/elPescado.jpg", dataName: "elPescado" },
-        { url: "assets/images/laPalma.jpg", dataName: "laPalma" },
-        { url: "assets/images/laMaceta.jpg", dataName: "laMaceta" },
-        { url: "assets/images/elArpa.jpg", dataName: "elArpa" },
-        { url: "assets/images/laRana.jpg", dataName: "laRana" },
+        { url: "assets/images/elGallo.jpg", dataName: "elGallo", audioURL: "assets/audio/elGallo.mp3" },     
+        { url: "assets/images/elDiablito.jpg", dataName: "elDiablito", audioURL: "assets/audio/elDiablito.mp3" },     
+        { url: "assets/images/laDama.jpg", dataName: "laDama", audioURL: "assets/audio/laDama.mp3" },     
+        { url: "assets/images/elCatrin.jpg", dataName: "elCatrin", audioURL: "assets/audio/elCatrin.mp3" },     
+        { url: "assets/images/elParaguas.jpg", dataName: "elParaguas", audioURL: "assets/audio/elParaguas.mp3" },     
+        { url: "assets/images/laSirena.jpg", dataName: "laSirena", audioURL: "assets/audio/laSirena.mp3" },     
+        { url: "assets/images/laEscalera.jpg", dataName: "laEscalera", audioURL: "assets/audio/laEscalera.mp3" },     
+        { url: "assets/images/laBotella.jpg", dataName: "laBotella", audioURL: "assets/audio/laBotella.mp3" },     
+        { url: "assets/images/elBarril.jpg", dataName: "elBarril", audioURL: "assets/audio/elBarril.mp3" },     
+        { url: "assets/images/elArbol.jpg", dataName: "elArbol", audioURL: "assets/audio/elArbol.mp3" },     
+        { url: "assets/images/elMelon.jpg", dataName: "elMelon", audioURL: "assets/audio/elMelon.mp3" },     
+        { url: "assets/images/elValiente.jpg", dataName: "elValiente", audioURL: "assets/audio/elValiente.mp3" },     
+        { url: "assets/images/elGorrito.jpg", dataName: "elGorrito", audioURL: "assets/audio/elGorrito.mp3" },     
+        { url: "assets/images/laMuerte.jpg", dataName: "laMuerte", audioURL: "assets/audio/laMuerte.mp3" },     
+        { url: "assets/images/laPera.jpg", dataName: "laPera", audioURL: "assets/audio/laPera.mp3" },     
+        { url: "assets/images/laBandera.jpg", dataName: "laBandera", audioURL: "assets/audio/laBandera.mp3" },     
+        { url: "assets/images/elBandolon.jpg", dataName: "elBandolon", audioURL: "assets/audio/elBandolon.mp3" },     
+        { url: "assets/images/elVioloncello.jpg", dataName: "elVioloncello", audioURL: "assets/audio/elVioloncello.mp3" },     
+        { url: "assets/images/laGarza.jpg", dataName: "laGarza", audioURL: "assets/audio/laGarza.mp3" },     
+        { url: "assets/images/elPajaro.jpg", dataName: "elPajaro", audioURL: "assets/audio/elPajaro.mp3" },     
+        { url: "assets/images/laMano.jpg", dataName: "laMano", audioURL: "assets/audio/laMano.mp3" },     
+        { url: "assets/images/laBota.jpg", dataName: "laBota", audioURL: "assets/audio/laBota.mp3" },     
+        { url: "assets/images/laLuna.jpg", dataName: "laLuna", audioURL: "assets/audio/laLuna.mp3" },     
+        { url: "assets/images/elCotorro.jpg", dataName: "elCotorro", audioURL: "assets/audio/elCotorro.mp3" },     
+        { url: "assets/images/elBorracho.jpg", dataName: "elBorracho", audioURL: "assets/audio/elBorracho.mp3" },     
+        { url: "assets/images/elNegrito.jpg", dataName: "elNegrito", audioURL: "assets/audio/elNegrito.mp3" },     
+        { url: "assets/images/elCorazon.jpg", dataName: "elCorazon", audioURL: "assets/audio/elCorazon.mp3" },     
+        { url: "assets/images/laSandia.jpg", dataName: "laSandia", audioURL: "assets/audio/laSandia.mp3" },     
+        { url: "assets/images/elTambor.jpg", dataName: "elTambor", audioURL: "assets/audio/elTambor.mp3" },     
+        { url: "assets/images/elCamaron.jpg", dataName: "elCamaron", audioURL: "assets/audio/elCamaron.mp3" },     
+        { url: "assets/images/lasJaras.jpg", dataName: "lasJaras", audioURL: "assets/audio/lasJaras.mp3" },     
+        { url: "assets/images/elMusico.jpg", dataName: "elMusico", audioURL: "assets/audio/elMusico.mp3" },     
+        { url: "assets/images/laArana.jpg", dataName: "laArana", audioURL: "assets/audio/laArana.mp3" },     
+        { url: "assets/images/elSoldado.jpg", dataName: "elSoldado", audioURL: "assets/audio/elSoldado.mp3" },     
+        { url: "assets/images/laEstrella.jpg", dataName: "laEstrella", audioURL: "assets/audio/laEstrella.mp3" },     
+        { url: "assets/images/elCazo.jpg", dataName: "elCazo", audioURL: "assets/audio/elCazo.mp3" },     
+        { url: "assets/images/elMundo.jpg", dataName: "elMundo", audioURL: "assets/audio/elMundo.mp3" },     
+        { url: "assets/images/elApache.jpg", dataName: "elApache", audioURL: "assets/audio/elApache.mp3" },     
+        { url: "assets/images/elNopal.jpg", dataName: "elNopal", audioURL: "assets/audio/elNopal.mp3" },     
+        { url: "assets/images/elAlacran.jpg", dataName: "elAlacran", audioURL: "assets/audio/elAlacran.mp3" },     
+        { url: "assets/images/laRosa.jpg", dataName: "laRosa", audioURL: "assets/audio/laRosa.mp3" },     
+        { url: "assets/images/laCalavera.jpg", dataName: "laCalavera", audioURL: "assets/audio/laCalavera.mp3" },     
+        { url: "assets/images/laCampana.jpg", dataName: "laCampana", audioURL: "assets/audio/laCampana.mp3" },     
+        { url: "assets/images/elCantarito.jpg", dataName: "elCantarito", audioURL: "assets/audio/elCantarito.mp3" },     
+        { url: "assets/images/elVenado.jpg", dataName: "elVenado", audioURL: "assets/audio/elVenado.mp3" },     
+        { url: "assets/images/elSol.jpg", dataName: "elSol", audioURL: "assets/audio/elSol.mp3" },     
+        { url: "assets/images/laCorona.jpg", dataName: "laCorona", audioURL: "assets/audio/laCorona.mp3" },     
+        { url: "assets/images/laChalupa.jpg", dataName: "laChalupa", audioURL: "assets/audio/laChalupa.mp3" },     
+        { url: "assets/images/elPino.jpg", dataName: "elPino", audioURL: "assets/audio/elPino.mp3" },     
+        { url: "assets/images/elPescado.jpg", dataName: "elPescado", audioURL: "assets/audio/elPescado.mp3" },     
+        { url: "assets/images/laPalma.jpg", dataName: "laPalma", audioURL: "assets/audio/laPalma.mp3" },     
+        { url: "assets/images/laMaceta.jpg", dataName: "laMaceta", audioURL: "assets/audio/laMaceta.mp3" },     
+        { url: "assets/images/elArpa.jpg", dataName: "elArpa", audioURL: "assets/audio/elArpa.mp3" },     
+        { url: "assets/images/laRana.jpg", dataName: "laRana", audioURL: "assets/audio/laRana.mp3" },     
     ]
 
     // This variable includes all the properties and values of the game, meaning variables to manipulate and functions.
@@ -236,27 +236,6 @@ $(document).ready(function () {
     //         alert("Mal")
     //     }
     // })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     // Firebase configuration
