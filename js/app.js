@@ -314,10 +314,17 @@ $(document).ready(function () {
             }
             players.push(newPlayer);
 
-            database.ref("loteria/players").set(players);
-            database.ref("loteria/players/" + index).onDisconnect().remove();
+            console.log("players", players)
 
-            index = players.findIndex(x => x.name === $("#nameInput").val().trim())
+            database.ref("loteria/players").set(players);
+            index = players.findIndex(x => x.name === $("#nameInput").val().trim());
+            var pathToRemove = "loteria/players/" + index;
+            console.log("pathToRemove", pathToRemove)
+            database.ref(pathToRemove).onDisconnect().remove();
+
+            
+
+            console.log("index", index);
 
             loteria.initialTrigger();
         }
