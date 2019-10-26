@@ -271,8 +271,11 @@ $(document).ready(function () {
 
     database.ref("loteria/usedIndexNum").on("value", function (snapshot) {
         if (snapshot.exists()) {
-            // console.log("snapshot.val()", snapshot.val());
             usedIndexNum = snapshot.val();
+            if (players.length === 1) {
+                database.ref("loteria/usedIndexNum").onDisconnect().remove();
+                
+            }
         }
     });
 
