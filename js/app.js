@@ -3,8 +3,8 @@ $(document).ready(function () {
 
     // This is the array that includes the object to iterate and retrieve the img src to insert in the buttons of the board and in the selected image div
     var usedIndexNum = []; //This array is used to control which cards have already been selected when populating the selectedOrder array
-    var selectedOrder = []; //This array will be used to hold the index number of cards in the order that they will be showed to the users, it should be populated by the first user that signs in to the firebase and shared to the other so that every user sees the same carda in the same order 
-    var playingOrder = 0; //This variable is used to get a count of the quantity of times the card has changed (it starts in 1), it is used to select the card from the selectedOrderArray
+    // var selectedOrder = []; //This array will be used to hold the index number of cards in the order that they will be showed to the users, it should be populated by the first user that signs in to the firebase and shared to the other so that every user sees the same carda in the same order 
+    var playingOrder = 0; //This variable is used to get a count of the quantity of times the card has changed (it starts in 0), it is used to select the card from the selectedOrderArray
     var images = [
         { url: "assets/images/elGallo.jpg", dataName: "elGallo" },
         { url: "assets/images/elDiablito.jpg", dataName: "elDiablito" },
@@ -107,30 +107,34 @@ $(document).ready(function () {
 
         // This method is used to create an array with the selected index order of cards so that all of the users see the same selected cards in the same order
         createSelectedOrder: function () {
-            for (var j = 0; j < images.length; j++) {
-                var randomNumber = Math.floor(Math.random() * images.length);
-                if (!usedIndexNum.includes(randomNumber)) {
-                    selectedOrder.push(randomNumber);
-                    usedIndexNum.push(randomNumber);
-                } else (j--);
+            if (players.length === 1) {
+                for (var j = 0; j < images.length; j++) {
+                    var randomNumber = Math.floor(Math.random() * images.length);
+                    if (!usedIndexNum.includes(randomNumber)) {
+                        // selectedOrder.push(randomNumber);
+                        usedIndexNum.push(randomNumber);
+                    } else (j--);
+                }
+                database.ref("loteria/usedIndexNum").set(usedIndexNum);
             }
         },
 
         // This function selects a card
         displaySelectedCard: function () {
-            randomObj = images[selectedOrder[playingOrder]];
+            // randomObj = images[selectedOrder[playingOrder]];
+            randomObj = images[usedIndexNum[playingOrder]];
             randomObjURL = randomObj.url;
             randomObjDataName = randomObj.dataName;
             loteria.selectedObj = randomObj;
             $("#selectedCard").attr({ "src": randomObjURL, height: "200px", width: "150px", "dataName": randomObjDataName });
             playingOrder++
-            console.log("playingOrder: " + playingOrder)
-            if (playingOrder > (selectedOrder.length-1)) {
+            // console.log("playingOrder: " + playingOrder)
+            if (playingOrder > (usedIndexNum.length - 1)) {
                 playingOrder = 0;
             }
         },
 
-        statusBar: function(){
+        statusBar: function () {
             loteria.miliseconds--;
             $("#preloader").attr("style", "width: " + loteria.miliseconds * 2.5 + "%")
         },
@@ -140,9 +144,9 @@ $(document).ready(function () {
             loteria.seconds--;
             var converted = timeConverter(loteria.seconds);
             // $("#time").html(converted);
-            console.log(converted);
+            // console.log(converted);
             if (loteria.seconds <= 0) {
-                console.log("Se acabó el tiempo");
+                // console.log("Se acabó el tiempo");
                 loteria.timeUp();
             }
 
@@ -193,13 +197,155 @@ $(document).ready(function () {
         startGame()
     })
 
+    // function startGame() {
+    //     $("#welcomeContainer").attr("style", "display: none");
+    //     $("#gameContainer").attr("style", "display: block");
+    //     if ($("#nameInput").val().trim() !== "") {
+    //         loteria.initialTrigger();
+    //     }
+    // }
+
+    // $('body').on('click', '.clickableCard', function () {
+    //     if ($(this).attr("dataname") === loteria.selectedObj.dataName) {
+    //         $("#" + this.id).parent().append('<span id="' + this.id + 'newElement' + '" class="bean"><h1>Bean</h1></span>');
+    //         $("#" + this.id).attr("class", "notClickableCard")
+    //         $("#" + this.id).attr("style", "opacity: 0.3;")
+
+    //         loteria.matches.push(this.id)
+
+    //         if (loteria.matches.length === 1) {
+    //             clearTimeout(timer);
+    //             clearInterval(timerForStatusBar);
+    //             alert("You win!!!")
+    //             for (let i = 0; i < loteria.matches.length; i++) {
+    //                 $("#" + loteria.matches[i] + "newElement").html('');
+    //                 $("#" + loteria.matches[i]).attr("class", "clickableCard")
+    //                 $("#" + loteria.matches[i]).attr("style", "opacity: 1;")
+    //             }
+    //             loteria.matches = [];
+    //             usedIndexNum = [];
+    //             selectedOrder = [];
+    //             playingOrder = 0;
+    //             loteria.miliseconds = 0;
+    //             loteria.fixedMiliseconds = 0;
+
+    //             $("#gameContainer").attr("style", "display: none");
+    //             $("#welcomeContainer").attr("style", "display: block");
+    //         }
+    //     } else {
+    //         alert("Mal")
+    //     }
+    // })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyDphnl3y_pEJm9Lo3tGLqfW4vJGVFVTKq0",
+        authDomain: "bootcamp-15178.firebaseapp.com",
+        databaseURL: "https://bootcamp-15178.firebaseio.com",
+        projectId: "bootcamp-15178",
+        storageBucket: "bootcamp-15178.appspot.com",
+        messagingSenderId: "967695164094",
+        appId: "1:967695164094:web:e8633a18dea8efe8bfb4ef"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    var database = firebase.database();
+
+
+    var players = [];
+    var index = 0
+
+
+
+
+
+
+
+    database.ref("loteria/usedIndexNum").on("value", function (snapshot) {
+        if (snapshot.exists()) {
+            // console.log("snapshot.val()", snapshot.val());
+            usedIndexNum = snapshot.val();
+        }
+    });
+
+
+    database.ref("loteria/players").on("value", function (snapshot) {
+        if (snapshot.exists()) {
+            console.log("snapshot.val()", snapshot.val());
+            players = snapshot.val();
+        }
+    });
+
+
     function startGame() {
         $("#welcomeContainer").attr("style", "display: none");
         $("#gameContainer").attr("style", "display: block");
-        if ($("#nameInput").val().trim() !== "") {
+        // if ($("#nameInput").val().trim() !== "") {
+        //     loteria.initialTrigger();
+        // }
+
+        if (($("#nameInput").val().trim() !== "")) {
+            var newPlayer = {
+                name: $("#nameInput").val().trim(),
+                matches: loteria.matches
+            }
+            players.push(newPlayer);
+
+            console.log("players", players)
+
+            database.ref("loteria/players").set(players);
+            index = players.findIndex(x => x.name === $("#nameInput").val().trim());
+            var pathToRemove = "loteria/players/" + index;
+            console.log("pathToRemove", pathToRemove)
+            database.ref(pathToRemove).onDisconnect().remove();
+
+            
+
+            console.log("index", index);
+
             loteria.initialTrigger();
         }
-    }
+    };
+
+
+
+
+    $('#exampleFormControlTextarea1').keypress(function (e) {
+        if (e.which == 13) {
+            chat();
+        }
+    });
+
+
+
+    $("#sendBtn").on("click", function (event) {
+        chat();
+    })
+
+
 
     $('body').on('click', '.clickableCard', function () {
         if ($(this).attr("dataname") === loteria.selectedObj.dataName) {
@@ -208,16 +354,26 @@ $(document).ready(function () {
             $("#" + this.id).attr("style", "opacity: 0.3;")
 
             loteria.matches.push(this.id)
+            database.ref("loteria/players/" + index + "/matches").set(loteria.matches);
 
-            if (loteria.matches.length === 16) {
-                alert("You win!!!")
+
+            if (loteria.matches.length === 1) {
                 clearTimeout(timer);
+                clearInterval(timerForStatusBar);
+                alert("You win!!!")
                 for (let i = 0; i < loteria.matches.length; i++) {
                     $("#" + loteria.matches[i] + "newElement").html('');
                     $("#" + loteria.matches[i]).attr("class", "clickableCard")
                     $("#" + loteria.matches[i]).attr("style", "opacity: 1;")
                 }
                 loteria.matches = [];
+                usedIndexNum = [];
+                selectedOrder = [];
+                playingOrder = 0;
+                loteria.miliseconds = 0;
+                loteria.fixedMiliseconds = 0;
+                database.ref("loteria").remove();
+
                 $("#gameContainer").attr("style", "display: none");
                 $("#welcomeContainer").attr("style", "display: block");
             }
@@ -225,4 +381,5 @@ $(document).ready(function () {
             alert("Mal")
         }
     })
+
 })
