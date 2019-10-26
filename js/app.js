@@ -107,14 +107,16 @@ $(document).ready(function () {
 
         // This method is used to create an array with the selected index order of cards so that all of the users see the same selected cards in the same order
         createSelectedOrder: function () {
-            for (var j = 0; j < images.length; j++) {
-                var randomNumber = Math.floor(Math.random() * images.length);
-                if (!usedIndexNum.includes(randomNumber)) {
-                    // selectedOrder.push(randomNumber);
-                    usedIndexNum.push(randomNumber);
-                } else (j--);
+            if (players.length === 1) {
+                for (var j = 0; j < images.length; j++) {
+                    var randomNumber = Math.floor(Math.random() * images.length);
+                    if (!usedIndexNum.includes(randomNumber)) {
+                        // selectedOrder.push(randomNumber);
+                        usedIndexNum.push(randomNumber);
+                    } else (j--);
+                }
+                database.ref("loteria/usedIndexNum").set(usedIndexNum);
             }
-            // console.log("usedIndexNum", usedIndexNum);
         },
 
         // This function selects a card
@@ -277,6 +279,19 @@ $(document).ready(function () {
     var index = 0
 
 
+
+
+
+
+
+    database.ref("loteria/usedIndexNum").on("value", function (snapshot) {
+        if (snapshot.exists()) {
+            // console.log("snapshot.val()", snapshot.val());
+            usedIndexNum = snapshot.val();
+        }
+    });
+
+
     database.ref("loteria/players").on("value", function (snapshot) {
         if (snapshot.exists()) {
             console.log("snapshot.val()", snapshot.val());
@@ -288,9 +303,9 @@ $(document).ready(function () {
     function startGame() {
         $("#welcomeContainer").attr("style", "display: none");
         $("#gameContainer").attr("style", "display: block");
-        if ($("#nameInput").val().trim() !== "") {
-            loteria.initialTrigger();
-        }
+        // if ($("#nameInput").val().trim() !== "") {
+        //     loteria.initialTrigger();
+        // }
 
         if (($("#nameInput").val().trim() !== "")) {
             var newPlayer = {
@@ -303,6 +318,8 @@ $(document).ready(function () {
             database.ref("loteria/players/" + index).onDisconnect().remove();
 
             index = players.findIndex(x => x.name === $("#nameInput").val().trim())
+
+            loteria.initialTrigger();
         }
     };
 
