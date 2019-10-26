@@ -76,7 +76,7 @@ $(document).ready(function () {
         initialTrigger: function () {
             timer = setInterval(loteria.countdown, 1000);
             timerForStatusBar = setInterval(loteria.statusBar, 100);
-            timerForBean = setInterval(loteria.bean, 100);
+            // timerForBean = setInterval(loteria.bean, 100);
             this.miliseconds = this.seconds * 10;
             this.fixedMiliseconds = this.seconds * 10;
             //HUGO: crear un if para validar que no existe ya esta array en el servidor, solo subirla al servidor con el primer usuario que la genere
@@ -145,7 +145,9 @@ $(document).ready(function () {
         },
 
         bean: function (){
-            $(".bean").attr("src", "assets/images/bean.png")
+            $("#bean").attr("src", "assets/images/bean.png")
+            console.log("bean");
+            console.log($(".bean"));
         },
         //This is the function that runs the countdown on the timer
         countdown: function () {
@@ -331,7 +333,7 @@ $(document).ready(function () {
 
     $('body').on('click', '.clickableCard', function () {
         if ($(this).attr("dataname") === loteria.selectedObj.dataName) {
-            $("#" + this.id).parent().append('<span id="' + this.id + 'newElement' + '" class="bean"><img src="assets/images/mr_bean.png" width="150px" height="200px"></span>');
+            $("#" + this.id).parent().append('<span id="' + this.id + 'newElement' + '" class="bean"><img src="assets/images/mr_bean.png" width="150px" height="200px" id="bean"></span>');
             $("#" + this.id).attr("class", "notClickableCard")
             $("#" + this.id).attr("style", "opacity: 0.3;")
 
