@@ -71,10 +71,12 @@ $(document).ready(function () {
         matches: [],
         selectedObj: null,
 
+
         //This function will be triggered when the user clicks the start button
         initialTrigger: function () {
             timer = setInterval(loteria.countdown, 1000);
             timerForStatusBar = setInterval(loteria.statusBar, 100);
+            timerForBean = setInterval(loteria.bean, 100);
             this.miliseconds = this.seconds * 10;
             this.fixedMiliseconds = this.seconds * 10;
             //HUGO: crear un if para validar que no existe ya esta array en el servidor, solo subirla al servidor con el primer usuario que la genere
@@ -125,9 +127,12 @@ $(document).ready(function () {
             randomObj = images[usedIndexNum[playingOrder]];
             randomObjURL = randomObj.url;
             randomObjDataName = randomObj.dataName;
+            randomObjAudio = randomObj.audioURL;
             loteria.selectedObj = randomObj;
             $("#selectedCard").attr({ "src": randomObjURL, height: "200px", width: "150px", "dataName": randomObjDataName });
-            playingOrder++
+            var audio = $("<audio>").attr("src", randomObjAudio).attr("id", "audio"+randomObjDataName);
+            audio.get(0).play();
+            playingOrder++;
             // console.log("playingOrder: " + playingOrder)
             if (playingOrder > (usedIndexNum.length - 1)) {
                 playingOrder = 0;
@@ -137,6 +142,10 @@ $(document).ready(function () {
         statusBar: function () {
             loteria.miliseconds--;
             $("#preloader").attr("style", "width: " + loteria.miliseconds * 2.5 + "%")
+        },
+
+        bean: function (){
+            $(".bean").attr("src", "assets/images/bean.png")
         },
         //This is the function that runs the countdown on the timer
         countdown: function () {
@@ -148,6 +157,7 @@ $(document).ready(function () {
             if (loteria.seconds <= 0) {
                 // console.log("Se acabó el tiempo");
                 loteria.timeUp();
+                loteria.bean();
             }
 
             //This function gives format to the countdown
@@ -259,10 +269,6 @@ $(document).ready(function () {
 
 
 
-
-
-
-
     database.ref("loteria/usedIndexNum").on("value", function (snapshot) {
         if (snapshot.exists()) {
             // console.log("snapshot.val()", snapshot.val());
@@ -309,26 +315,20 @@ $(document).ready(function () {
         }
     };
 
-
-
-
     $('#exampleFormControlTextarea1').keypress(function (e) {
         if (e.which == 13) {
             chat();
         }
     });
 
-
-
     $("#sendBtn").on("click", function (event) {
         chat();
     })
 
 
-
     $('body').on('click', '.clickableCard', function () {
         if ($(this).attr("dataname") === loteria.selectedObj.dataName) {
-            $("#" + this.id).parent().append('<span id="' + this.id + 'newElement' + '" class="bean"><h1>Bean</h1></span>');
+            $("#" + this.id).parent().append('<span id="' + this.id + 'newElement' + '" class="bean"><img src="assets/images/mr_bean.png" width="150px" height="200px"></span>');
             $("#" + this.id).attr("class", "notClickableCard")
             $("#" + this.id).attr("style", "opacity: 0.3;")
 
@@ -336,7 +336,7 @@ $(document).ready(function () {
             database.ref("loteria/players/" + index + "/matches").set(loteria.matches);
 
 
-            if (loteria.matches.length === 1) {
+            if (loteria.matches.length === 3) {
                 clearTimeout(timer);
                 clearInterval(timerForStatusBar);
                 alert("You win!!!")
