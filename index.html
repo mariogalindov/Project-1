@@ -44,7 +44,7 @@
 
 
         <!-- Here lives our Loteria Card-Board -->
-        <div class="container">  
+        <div class="container">
             <div class="row" id="row1">
                 <div class="col m2">
                     <img id="img1" class="clickableCard" src="https://via.placeholder.com/150x200">
@@ -97,15 +97,15 @@
                 </div>
                 <div class="col m1"></div>
                 <div class="col m2">
-                <!-- Here player types a message -->
-                <i class="tiny material-icons">message</i> <span> Chat </span>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Type your message here</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <!-- Send message button. ID assigned "sendBtn" -->
-                <a class="waves-effect waves-light btn-small" id="sendBtn"><i
-                        class="material-icons left">send</i>Send</a>
+                    <!-- Here player types a message -->
+                    <i class="tiny material-icons">message</i> <span> Chat </span>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Type your message here</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <!-- Send message button. ID assigned "sendBtn" -->
+                    <a class="waves-effect waves-light btn-small" id="sendBtn"><i
+                            class="material-icons left">send</i>Send</a>
 
                 </div>
                 <div class="col m3">
@@ -115,7 +115,18 @@
 
 
         </div>
- </div>
+    </div>
+
+    <div class="container" id="endGameContainer">
+        <br>
+        <br>
+        <br>
+        <div id="congratTxt"></div>
+        <br>
+        <br>
+        <br>
+        <div id="congratGif"></div>
+    </div>
 
     <!-- JQuery script tag -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"

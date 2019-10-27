@@ -70,6 +70,7 @@ $(document).ready(function () {
         fixedMiliseconds: this.seconds * 10,
         matches: [],
         selectedObj: null,
+        winner: null,
 
 
         //This function will be triggered when the user clicks the start button
@@ -271,13 +272,57 @@ $(document).ready(function () {
 
 
 
+    // database.ref("loteria/winner/").set($("#nameInput").val().trim());
+    database.ref("loteria/winner").on("value", function (snapshot) {
+        if (snapshot.exists()) {
+            loteria.winner = snapshot.val();
+            clearTimeout(timer);
+            clearInterval(timerForStatusBar);
+            if (loteria.winner == $("#nameInput").val().trim()) {
+                $.ajax({
+                    url: "https://api.giphy.com/v1/gifs/random?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&tag=congratulations",
+                    method: "GET"
+                })
+                    .then(function (response) {
+                        console.log("Response", response);
+                        var results = response.data;
+                        console.log("Results", results);
+                        var gifDiv = $("<div>");
+                        var personImage = $("<img>");
+                        personImage.attr({
+                            "src": results.images.original.url,
+                        });
+                        gifDiv.prepend(personImage);
+                        $("#congratTxt").html("<br><br><br>CONGRATULATIONS " + $("#nameInput").val().trim() + " you're the WINNER!!!")
+                        $("#congratGif").prepend(gifDiv);
+                    });
+                 $("#endGameContainer").attr("style", "display: block");
+                console.log("WINNER!!!!!!!!!!!!!!!!!!!")
+            } else {
+                $("#congratTxt").html("<br><br><br>Thanks for playing! " + $("#nameInput").val().trim() + " your opponent: " + loteria.winner + " won, congratulate him :)")
+                 $("#endGameContainer").attr("style", "display: block");
+                console.log("LOSER!!!!!!!!!!!!!!!!!!!")
+            }
+            console.log("snapshot.val()", snapshot.val());
+            $("#gameContainer").attr("style", "display: none");
+            $("#endGameContainer").attr("style", "display: block");
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+
     database.ref("loteria/usedIndexNum").on("value", function (snapshot) {
         if (snapshot.exists()) {
             usedIndexNum = snapshot.val();
-            if (players.length === 1) {
-                database.ref("loteria/usedIndexNum").onDisconnect().remove();
-                
-            }
+            // database.ref("loteria/usedIndexNum").onDisconnect().remove();
         }
     });
 
@@ -341,10 +386,11 @@ $(document).ready(function () {
             database.ref("loteria/players/" + index + "/matches").set(loteria.matches);
 
 
-            if (loteria.matches.length === 3) {
+            if (loteria.matches.length === 1) {
+                database.ref("loteria/winner/").set($("#nameInput").val().trim());
                 clearTimeout(timer);
                 clearInterval(timerForStatusBar);
-                alert("You win!!!")
+                // alert("You win!!!")
                 for (let i = 0; i < loteria.matches.length; i++) {
                     $("#" + loteria.matches[i] + "newElement").html('');
                     $("#" + loteria.matches[i]).attr("class", "clickableCard")
@@ -359,7 +405,7 @@ $(document).ready(function () {
                 database.ref("loteria").remove();
 
                 $("#gameContainer").attr("style", "display: none");
-                $("#welcomeContainer").attr("style", "display: block");
+                // $("#welcomeContainer").attr("style", "display: block");
             }
         } else {
             alert("Mal")
