@@ -194,17 +194,21 @@ $(document).ready(function () {
 
     $('#nameInput').keyup(function () {
         if ($(this).val().length != 0) {
-            $("#startBtn").attr("class", "waves-effect waves-light btn-large");
+            $("#registerBtn").attr("class", "waves-effect waves-light btn-large");
         } else {
-            $("#startBtn").attr("class", "waves-effect waves-light btn-large disable");
+            $("#registerBtn").attr("class", "waves-effect waves-light btn-large disable");
         }
     });
 
     $('#nameInput').keypress(function (e) {
         if (e.which == 13) {
-            startGame()
+            registerPlayer()
         }
     });
+
+    $("#registerBtn").on("click", function () {
+        registerPlayer()
+    })
 
     $("#startBtn").on("click", function () {
         startGame()
@@ -335,7 +339,22 @@ $(document).ready(function () {
     });
 
 
+    function registerPlayer() {
+        $('#loadMe').modal({
+            backdrop: "static", //remove ability to close modal with click
+            keyboard: false, //remove option to close with keyboard
+            show: true //Display loader!
+        })
+    
+    }
+
     function startGame() {
+
+        $('#loadMe').modal('hide');
+
+
+
+
         $("#welcomeContainer").attr("style", "display: none");
         $("#gameContainer").attr("style", "display: block");
         // if ($("#nameInput").val().trim() !== "") {
