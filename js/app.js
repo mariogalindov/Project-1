@@ -333,12 +333,15 @@ $(document).ready(function () {
             database.ref(pathToRemove).onDisconnect().remove();
             console.log("index", index);
         }
-
+        if(players.length === 1){
+            loteria.createSelectedOrder();
+        }
 
 
     }
 
     function startGame() {
+        console.log("Inside startGame")
         loteria.createSelectedOrder();
         if(players.length===loteria.numOfUsers){
             $("#registerPlayers").attr("style", "display: none");
