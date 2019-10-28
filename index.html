@@ -59,9 +59,18 @@
 
     <div class="container" id="gameContainer">
 
-
         <!-- Here lives our Loteria Card-Board -->
+
         <div class="container">
+
+        <div class="row">
+        <!-- Avatar & player location using API -->
+                <img height=30px weight= 30px src= "https://avatars.dicebear.com/v2/avataaars/:seed.svg">
+                <span>Player from </span> <span id="user_region"> </span> <span id="user_country"></span>
+        </div>
+
+        <div class="container">  
+
             <div class="row" id="row1">
                 <div class="col m2">
                     <img id="img1" class="clickableCard" src="https://via.placeholder.com/150x200">
@@ -155,6 +164,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
+
+    <!-- API GEO JS to get location based in IP address -->
+
+    <script async src="https://get.geojs.io/v1/ip/geo.js"></script>
+
+    <script type="application/javascript">
+        function geoip(json){
+            
+            var userRegion = document.getElementById("user_region");
+            var userCountry = document.getElementById("user_country");
+            
+            userRegion.textContent = json.region + ", ";
+            userCountry.textContent = json.country;
+        }
+    </script>
 
 </body>
 
