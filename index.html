@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Link to Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
     <!-- Firebase References -->
     <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-database.js"></script>
@@ -28,15 +30,17 @@
 
         <div class="row">
             <div class="col s3">
+                <img src="./assets/images/welcomeScreen.JPG">
+            </div>
                 <!-- Here player will add his/her name -->
+            <div class="col s3">
                 <h6> Player </h6>
                 <input id="nameInput" placeholder="Type your name here" type="text">
             </div>
-            <div class="col s6"></div>
-            <div class="col s3">
+            <div class="col s2">
                 <a class="waves-effect waves-light btn-large disabled" id="registerBtn"> Register </a>
-
             </div>
+            <div class="col s4"></div>
         </div>
     </div>
 
@@ -62,6 +66,15 @@
 
         <!-- Here lives our Loteria Card-Board -->
         <div class="container">
+
+        <div class="row">
+        <!-- Avatar & player location using API -->
+                <div class="col m7">
+                <img height=30px weight= 30px src= "https://avatars.dicebear.com/v2/avataaars/:seed.svg">
+                <span>Player from </span> <span id="user_region"> </span> <span id="user_country"></span>
+                </div>
+        </div>
+
             <div class="row" id="row1">
                 <div class="col m2">
                     <img id="img1" class="clickableCard" src="https://via.placeholder.com/150x200">
@@ -93,7 +106,7 @@
                 <div class="col m1"></div>
                 <!-- Here will live the timer, we can update the width based on the countdown -->
                 <div class="col m2">
-                    <!-- <img width=150px height=50px src="https://cdn.pixabay.com/photo/2012/04/13/00/14/bar-31174_640.png" id="countDownTimer"> -->
+                    
                     <!-- Prealoader (progess) from Materialize -->
                     <div class="progress">
                         <div id="preloader" class="determinate" style="width: 100%"></div>
