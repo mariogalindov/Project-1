@@ -34,15 +34,35 @@
             </div>
             <div class="col s6"></div>
             <div class="col s3">
-                <!-- Start button. ID assigned: "startBtn" -->
-                <a class="waves-effect waves-light btn-large disabled" id="startBtn"> START </a>
+                <a class="waves-effect waves-light btn-large disabled" id="registerBtn"> Register </a>
+
             </div>
         </div>
     </div>
 
+
+    <div class="container" id="registerPlayers">
+        Welcome to Loteria!
+        <div class="spinner-border text-danger" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <br>
+        <br>
+        <span id="players">Waiting for other players...</span>
+        <a class="waves-effect waves-light btn-large" id="startBtn"> START </a>
+    </div>
+
+
+
+
+
+
     <div class="container" id="gameContainer">
 
         <!-- Here lives our Loteria Card-Board -->
+
+        <div class="container">
+
         <div class="row">
         <!-- Avatar & player location using API -->
                 <img height=30px weight= 30px src= "https://avatars.dicebear.com/v2/avataaars/:seed.svg">
@@ -50,6 +70,7 @@
         </div>
 
         <div class="container">  
+
             <div class="row" id="row1">
                 <div class="col m2">
                     <img id="img1" class="clickableCard" src="https://via.placeholder.com/150x200">
@@ -102,15 +123,15 @@
                 </div>
                 <div class="col m1"></div>
                 <div class="col m2">
-                <!-- Here player types a message -->
-                <i class="tiny material-icons">message</i> <span> Chat </span>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Type your message here</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <!-- Send message button. ID assigned "sendBtn" -->
-                <a class="waves-effect waves-light btn-small" id="sendBtn"><i
-                        class="material-icons left">send</i>Send</a>
+                    <!-- Here player types a message -->
+                    <i class="tiny material-icons">message</i> <span> Chat </span>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Type your message here</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <!-- Send message button. ID assigned "sendBtn" -->
+                    <a class="waves-effect waves-light btn-small" id="sendBtn"><i
+                            class="material-icons left">send</i>Send</a>
 
                 </div>
                 <div class="col m3">
@@ -120,13 +141,29 @@
 
 
         </div>
- </div>
+    </div>
+
+    <div class="container" id="endGameContainer">
+        <br>
+        <br>
+        <br>
+        <div id="congratTxt"></div>
+        <br>
+        <br>
+        <br>
+        <div id="congratGif"></div>
+    </div>
+
+
 
     <!-- JQuery script tag -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- Link to Javascript file -->
     <script type="text/javascript" src="js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
 
     <!-- API GEO JS to get location based in IP address -->
 
