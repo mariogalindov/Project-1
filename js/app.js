@@ -309,6 +309,8 @@ $(document).ready(function () {
 
             if(players.length===4 && localRegister === true && onGoingGame === false){
                 startGame();
+                var avatarQueryURL = "https://avatars.dicebear.com/v2/bottts/" + $("#nameInput").val().trim() + ".svg"
+                $("#avatarElement").attr("src", avatarQueryURL);
                 // Creamos una variable que indique que ya hay un on-going game para que no permita a gente entrar si hay un juego en curso
                 onGoingGame = true;
                 database.ref("loteria/onGoingGame").set(onGoingGame);
