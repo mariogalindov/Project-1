@@ -3,6 +3,9 @@ $(document).ready(function () {
 
     $("#registerPlayers").attr("style", "display: none");
 
+    //local register click - variable that tells us if the local user has already clicked the register button
+    var localRegister = false;
+    var onGoingGame = false;
     // This is the array that includes the object to iterate and retrieve the img src to insert in the buttons of the board and in the selected image div
     var usedIndexNum = []; //This array is used to control which cards have already been selected when populating the selectedOrder array
     // var selectedOrder = []; //This array will be used to hold the index number of cards in the order that they will be showed to the users, it should be populated by the first user that signs in to the firebase and shared to the other so that every user sees the same carda in the same order 
@@ -68,6 +71,7 @@ $(document).ready(function () {
     var loteria = {
         timer: null,
         seconds: 5,
+        numOfUsers: 4,
         miliseconds: this.seconds * 10,
         fixedMiliseconds: this.seconds * 10,
         matches: [],
@@ -83,7 +87,7 @@ $(document).ready(function () {
             this.miliseconds = this.seconds * 10;
             this.fixedMiliseconds = this.seconds * 10;
             //HUGO: crear un if para validar que no existe ya esta array en el servidor, solo subirla al servidor con el primer usuario que la genere
-            this.createSelectedOrder();
+            // this.createSelectedOrder();
 
             //Here we'll have the random images placed in the board and in the selectedCard Div
 
@@ -113,14 +117,18 @@ $(document).ready(function () {
         // This method is used to create an array with the selected index order of cards so that all of the users see the same selected cards in the same order
         createSelectedOrder: function () {
             console.log("players.length!!!!!!!!!!!!!", players.length)
+            console.log("Images length: " + images.length)
             if (players.length == 1) {
+                    usedIndexNum = [];
                 for (var j = 0; j < images.length; j++) {
                     var randomNumber = Math.floor(Math.random() * images.length);
                     if (!usedIndexNum.includes(randomNumber)) {
                         // selectedOrder.push(randomNumber);
                         usedIndexNum.push(randomNumber);
                     } else (j--);
+                    console.log("Si entro a crear el array de usedIndexNum")
                 }
+                
                 database.ref("loteria/usedIndexNum").set(usedIndexNum);
             }
         },
@@ -276,11 +284,11 @@ $(document).ready(function () {
         }
     });
 
-
-
-
-
-
+    database.ref("loteria/onGoingGame").on("value", function (snapshot) {
+        if (snapshot.exists()) {
+            onGoingGame = snapshot.val();
+        }
+    });
 
     database.ref("loteria/usedIndexNum").on("value", function (snapshot) {
         if (snapshot.exists()) {
@@ -298,6 +306,13 @@ $(document).ready(function () {
             for (let i = 1; i < players.length; i++) {
                 $("#players").html(players[i].name + "</br>");
             }
+
+            if(players.length===4 && localRegister === true && onGoingGame === false){
+                startGame();
+                // Creamos una variable que indique que ya hay un on-going game para que no permita a gente entrar si hay un juego en curso
+                onGoingGame = true;
+                database.ref("loteria/onGoingGame").set(onGoingGame);
+            }
         }
     });
 
@@ -305,7 +320,8 @@ $(document).ready(function () {
     function registerPlayer() {
         $("#registerPlayers").attr("style", "display: block");
         $("#welcomeContainer").attr("style", "display: none");
-        if (($("#nameInput").val().trim() !== "")) {
+        if ($("#nameInput").val().trim() !== "") {
+            localRegister = true;
             var newPlayer = {
                 name: $("#nameInput").val().trim(),
                 matches: loteria.matches
@@ -320,18 +336,24 @@ $(document).ready(function () {
             console.log("pathToRemove", pathToRemove)
             database.ref(pathToRemove).onDisconnect().remove();
             console.log("index", index);
-
         }
-
+        if(players.length === 1){
+            loteria.createSelectedOrder();
+            onGoingGame = false;
+            database.ref("loteria/onGoingGame").set(onGoingGame);
+        }
 
 
     }
 
     function startGame() {
-        $("#registerPlayers").attr("style", "display: none");
-        $("#welcomeContainer").attr("style", "display: none");
-        $("#gameContainer").attr("style", "display: block");
-        loteria.initialTrigger();
+        loteria.createSelectedOrder();
+        if(players.length===loteria.numOfUsers){
+            $("#registerPlayers").attr("style", "display: none");
+            $("#welcomeContainer").attr("style", "display: none");
+            $("#gameContainer").attr("style", "display: block");
+            loteria.initialTrigger();
+        }
     };
 
     $('#exampleFormControlTextarea1').keypress(function (e) {
