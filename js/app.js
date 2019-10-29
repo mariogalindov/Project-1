@@ -109,7 +109,7 @@ $(document).ready(function () {
                 var dataNametoPlace = images[randNum].dataName;
                 if (!usedURLs.includes(URLtoPlace)) {
                     usedURLs.push(URLtoPlace);
-                    $("#img" + i).attr({ "src": URLtoPlace, "width": "100px", "height": "200px", "dataname": dataNametoPlace });
+                    $("#img" + i).attr({ "src": URLtoPlace, "width": "100%", "height": "100%", "dataname": dataNametoPlace });
                 } else (i--)
             }
         },
@@ -141,7 +141,7 @@ $(document).ready(function () {
             randomObjDataName = randomObj.dataName;
             randomObjAudio = randomObj.audioURL;
             loteria.selectedObj = randomObj;
-            $("#selectedCard").attr({ "src": randomObjURL, height: "200px", "dataName": randomObjDataName });
+            $("#selectedCard").attr({ "src": randomObjURL, height: "100%", width: "100%", "dataName": randomObjDataName });
             var audio = $("<audio>").attr("src", randomObjAudio).attr("id", "audio" + randomObjDataName);
             audio.get(0).play();
             playingOrder++;
