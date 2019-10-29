@@ -217,6 +217,12 @@ $(document).ready(function () {
         }
     });
 
+    $('#numOfUsersInput').keypress(function (e) {
+        if (e.which == 13) {
+            registerPlayer()
+        }
+    });
+
     $("#registerBtn").on("click", function () {
         registerPlayer()
     })
@@ -297,6 +303,12 @@ $(document).ready(function () {
         }
     });
 
+    database.ref("loteria/numOfUsers").on("value", function(snapshot){
+        if(snapshot.exists()){
+            loteria.numOfUsers = parseInt(snapshot.val());
+            console.log("Num of users inside loteria object: " + loteria.numOfUsers);
+        }
+    })
 
     database.ref("loteria/players").on("value", function (snapshot) {
         if (snapshot.exists()) {
@@ -315,13 +327,33 @@ $(document).ready(function () {
                 $("#currentPlayers").attr("style", "display:none");
             }
 
-            if(players.length===4 && localRegister === true && onGoingGame === false){
+            if(players.length === 0){
+                $("#numOfUsersInput").attr("style","display:block");
+            }
+            else{
+                $("#numOfUsersInput").attr("style","display:none");
+            }
+
+            if(players.length===loteria.numOfUsers && localRegister === true && onGoingGame === false){
                 startGame();
                 var avatarQueryURL = "https://avatars.dicebear.com/v2/bottts/" + $("#nameInput").val().trim() + ".svg"
                 $("#avatarElement").attr("src", avatarQueryURL);
                 // Creamos una variable que indique que ya hay un on-going game para que no permita a gente entrar si hay un juego en curso
                 onGoingGame = true;
                 database.ref("loteria/onGoingGame").set(onGoingGame);
+                $.ajax({
+                    url: "http://api.ipstack.com/check?access_key=519155ab32a186184538b00e88906594",
+                    method: "GET"
+                })
+                    .then(function (response) {
+                        console.log("Response", response);
+                        var country = response.country_name;
+                        console.log("Country", country);
+                        var city = response.city;
+                        console.log("City: " + city);
+                        $("#user_region").text(" " + city);
+                        $("#user_country").text(" " + country);
+                    });
             }
         }
     });
@@ -334,7 +366,8 @@ $(document).ready(function () {
             localRegister = true;
             var newPlayer = {
                 name: $("#nameInput").val().trim(),
-                matches: loteria.matches
+                matches: loteria.matches,
+                avatar: "https://avatars.dicebear.com/v2/bottts/" + $("#nameInput").val().trim() + ".svg"
             }
             players.push(newPlayer);
 
@@ -345,7 +378,9 @@ $(document).ready(function () {
             var pathToRemove = "loteria/players/" + index;
             console.log("pathToRemove", pathToRemove)
             database.ref(pathToRemove).onDisconnect().remove();
-            console.log("index", index);
+            if($("#numOfUsersInput").val().trim() !== "" && players.length === 1){
+                database.ref("loteria/numOfUsers").set($("#numOfUsersInput").val().trim());
+            }
         }
         if(players.length === 1){
             loteria.createSelectedOrder();
@@ -379,9 +414,9 @@ $(document).ready(function () {
 
     function chat() {
         event.preventDefault();
-
+        
         if (($("#nameInput").val().trim() !== "") && ($("#player-chat").val().trim() !== "")) {
-            var msg = $("#nameInput").val().trim() + ": " + $("#player-chat").val().trim();
+            var msg = "<span><img height=\"30px\" weight= \"30px\" src= \"https://avatars.dicebear.com/v2/bottts/" + $("#nameInput").val().trim() + ".svg\">" + "<p> " + $("#nameInput").val().trim() + ": " + $("#player-chat").val().trim() + "</p> </span>";
             $("#player-chat").val("");
 
             var chatKey = database.ref().child("loteria/chat/").push().key;
