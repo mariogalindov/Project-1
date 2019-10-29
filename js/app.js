@@ -303,9 +303,19 @@ $(document).ready(function () {
             console.log("snapshot.val()", snapshot.val());
             players = snapshot.val();
 
-            for (let i = 1; i < players.length; i++) {
-                $("#players").html(players[i].name + "</br>");
+            if (players.length > 1) {
+                $("#currentPlayers").html("Current players:<br>");
+                for (let i = 0; i < players.length; i++) {
+                    $("#noPlayers").attr("style", "display:none");
+                    $("#currentPlayers").attr("style", "display:block");
+                    $("#currentPlayers").append(players[i].name + "<br>");
+                }
+            } else {
+                $("#noPlayers").attr("style", "display:block");
+                $("#currentPlayers").attr("style", "display:none");
             }
+
+            
 
             if(players.length===4 && localRegister === true && onGoingGame === false){
                 startGame();
