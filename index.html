@@ -30,7 +30,7 @@
 
         <div class="row">
             <div class="col s3">
-                <img src="./assets/images/welcomeScreen.JPG">
+                <img class="responsive-img" src="./assets/images/welcomeScreen.JPG">
             </div>
                 <!-- Here player will add his/her name -->
             <div class="col s3">
@@ -58,25 +58,19 @@
 
         <div class="row">
             <div class="col s4">
-                <a class="waves-effect waves-light btn-large" id="startBtn"> START </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s4">
                 <span id="players">Waiting for other players...</span>
                 <div class="spinner-border text-danger" role="status">
-                <span class="sr-only">Loading...</span>
+                    <span class="sr-only">Loading...</span>
+                </div>
             </div>
         </div>
-      </div>
+    </div>
        
   
     <div class="container" id="gameContainer">
 
 
         <!-- Here lives our Loteria Card-Board -->
-        <div class="container">
-
         <div class="row">
         <!-- Avatar & player location using API -->
                 <div class="col m7">
@@ -85,46 +79,45 @@
                 </div>
         </div>
 
-            <div class="row" id="row1">
-                <div class="col m2">
-                    <img id="img1" class="clickableCard" src="https://via.placeholder.com/150x200">
-                </div>
-                <div class="col m2">
-                    <img id="img2" class="clickableCard" src="https://via.placeholder.com/150x200">
-                </div>
-                <div class="col m2">
-                    <img id="img3" class="clickableCard" src="https://via.placeholder.com/150x200">
-                </div>
-                <div class="col m1"></div>
-                <!-- Random Card -->
-                <div class="col m2">
-                    <img id="selectedCard" src="https://via.placeholder.com/150x200">
-                </div>
-                <div class="col m3"></div>
+        <div class="row" id="row1">
+            <div class="col m2">
+                <img id="img1" class="clickableCard" src="https://via.placeholder.com/150x200">
             </div>
-
-            <div class="row" id="row2">
-                <div class="col m2">
-                    <img id="img4" class="clickableCard" src="https://via.placeholder.com/150x200">
-                </div>
-                <div class="col m2">
-                    <img id="img5" class="clickableCard" src="https://via.placeholder.com/150x200">
-                </div>
-                <div class="col m2">
-                    <img id="img6" class="clickableCard" src="https://via.placeholder.com/150x200">
-                </div>
-                <div class="col m1"></div>
-                <!-- Here will live the timer, we can update the width based on the countdown -->
-                <div class="col m2">
-                    
-                    <!-- Prealoader (progess) from Materialize -->
-                    <div class="progress">
-                        <div id="preloader" class="determinate" style="width: 100%"></div>
-                    </div>
-                </div>
-                <div class="col m3"></div>
-
+            <div class="col m2">
+                <img id="img2" class="clickableCard" src="https://via.placeholder.com/150x200">
             </div>
+            <div class="col m2">
+                <img id="img3" class="clickableCard" src="https://via.placeholder.com/150x200">
+            </div>
+            <div class="col m1"></div>
+            <!-- Random Card -->
+            <div class="col m2">
+                <img id="selectedCard" src="https://via.placeholder.com/150x200">
+            </div>
+            <div class="col m3"></div>
+        </div>
+
+        <div class="row" id="row2">
+            <div class="col m2">
+                <img id="img4" class="clickableCard" src="https://via.placeholder.com/150x200">
+            </div>
+            <div class="col m2">
+                <img id="img5" class="clickableCard" src="https://via.placeholder.com/150x200">
+            </div>
+            <div class="col m2">
+                <img id="img6" class="clickableCard" src="https://via.placeholder.com/150x200">
+            </div>
+            <div class="col m1"></div>
+            <!-- Here will live the timer, we can update the width based on the countdown -->
+            <div class="col m2">
+                <!-- Prealoader (progess) from Materialize -->
+                <div class="progress">
+                    <div id="preloader" class="determinate" style="width: 100%"></div>
+                </div>
+            </div>
+            <div class="col m3"></div>
+        </div>
+
             <div class="row" id="row3">
                 <div class="col m2">
                     <img id="img7" class="clickableCard" src="https://via.placeholder.com/150x200">
@@ -135,8 +128,11 @@
                 <div class="col m2">
                     <img id="img9" class="clickableCard" src="https://via.placeholder.com/150x200">
                 </div>
-                <div class="col m1"></div>
-                <div class="col m2">
+                <div class="col m6"></div>
+            </div>
+
+            <div class="row" id="row4">
+                <div class="col">
                     <!-- Here player types a message -->
                     <i class="tiny material-icons">message</i> <span> Chat </span>
                     <!-- <div class="form-group">
@@ -146,17 +142,9 @@
                     <div class="col-12" id="chat-box"></div>
                     <input id="player-chat" placeholder="..." type="text">
                     <!-- Send message button. ID assigned "sendBtn" -->
-                    <a class="waves-effect waves-light btn-small" id="sendBtn"><i
-                            class="material-icons left">send</i>Send</a>
-
-                </div>
-                <div class="col m3">
-
+                    <a class="waves-effect waves-light btn-small" id="sendBtn"><i class="material-icons left">send</i>Send</a>
                 </div>
             </div>
-
-
-        </div>
     </div>
 
     <div class="container" id="endGameContainer">
