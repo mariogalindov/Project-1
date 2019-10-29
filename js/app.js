@@ -356,7 +356,7 @@ $(document).ready(function () {
         }
     };
 
-    $('#exampleFormControlTextarea1').keypress(function (e) {
+    $("#player-chat").keypress(function (e) {
         if (e.which == 13) {
             chat();
         }
@@ -365,6 +365,28 @@ $(document).ready(function () {
     $("#sendBtn").on("click", function (event) {
         chat();
     })
+
+    function chat() {
+        event.preventDefault();
+
+        if (($("#nameInput").val().trim() !== "") && ($("#player-chat").val().trim() !== "")) {
+            var msg = $("#nameInput").val().trim() + ": " + $("#player-chat").val().trim();
+            $("#player-chat").val("");
+
+            var chatKey = database.ref().child("loteria/chat/").push().key;
+
+            database.ref("loteria/chat/" + chatKey).set(msg);
+        }
+    };
+
+    database.ref("loteria/chat/").on("child_added", function (snapshot) {
+        var chatMsg = snapshot.val();
+        var chatEntry = $("<div>").html(chatMsg);
+
+        $("#chat-box").append(chatEntry);
+        $("#chat-box").scrollTop($("#chat-box")[0].scrollHeight);
+    });
+
 
 
     $('body').on('click', '.clickableCard', function () {
