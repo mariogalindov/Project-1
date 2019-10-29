@@ -34,8 +34,21 @@
             </div>
                 <!-- Here player will add his/her name -->
             <div class="col s3">
-                <h6> Player </h6>
-                <input id="nameInput" placeholder="Type your name here" type="text">
+                <div class="row">
+                    <div class="col">
+                        <h6> Player </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input id="nameInput" placeholder="Type your name here" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input id="numOfUsersInput" placeholder="N° of players" type="number">
+                    </div>
+                </div>
             </div>
             <div class="col s2">
                 <a class="waves-effect waves-light btn-large disabled" id="registerBtn"> Register </a>
@@ -76,7 +89,7 @@
         <div class="row">
         <!-- Avatar & player location using API -->
                 <div class="col m7">
-                <img height=30px weight= 30px src= "https://avatars.dicebear.com/v2/avataaars/:seed.svg">
+                <img height=30px weight= 30px src= "https://avatars.dicebear.com/v2/avataaars/:seed.svg" id="avatarElement">
                 <span>Player from </span> <span id="user_region"> </span> <span id="user_country"></span>
                 </div>
         </div>
