@@ -342,14 +342,14 @@ $(document).ready(function () {
                 onGoingGame = true;
                 database.ref("loteria/onGoingGame").set(onGoingGame);
                 $.ajax({
-                    url: "https://api.ipstack.com/check?access_key=519155ab32a186184538b00e88906594",
+                    url: "https://get.geojs.io/v1/ip/geo.js",
                     method: "GET"
                 })
                     .then(function (response) {
                         console.log("Response", response);
-                        var country = response.country_name;
+                        var country = response.country;
                         console.log("Country", country);
-                        var city = response.city;
+                        var city = response.region;
                         console.log("City: " + city);
                         $("#user_region").text(" " + city);
                         $("#user_country").text(" " + country);
