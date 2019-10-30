@@ -445,7 +445,7 @@ $(document).ready(function () {
             database.ref("loteria/players/" + index + "/matches").set(loteria.matches);
 
 
-            if (loteria.matches.length === 1) {
+            if (loteria.matches.length === 9) {
                 database.ref("loteria/winner/").set($("#nameInput").val().trim());
                 clearTimeout(timer);
                 clearInterval(timerForStatusBar);
