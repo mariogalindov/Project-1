@@ -437,7 +437,7 @@ $(document).ready(function () {
 
     $('body').on('click', '.clickableCard', function () {
         if ($(this).attr("dataname") === loteria.selectedObj.dataName) {
-            $("#" + this.id).parent().append('<span id="' + this.id + 'newElement' + '" class="bean"><img src="assets/images/mr_bean.png" width="150px" height="200px" id="bean"></span>');
+            $("#" + this.id).parent().append('<span id="' + this.id + 'newElement' + '" class="bean"><img src="assets/images/mr_bean.png" width="50%" height="50%" id="bean"></span>');
             $("#" + this.id).attr("class", "notClickableCard")
             $("#" + this.id).attr("style", "opacity: 0.3;")
 
