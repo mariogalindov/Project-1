@@ -347,6 +347,7 @@ $(document).ready(function () {
                 })
                     .then(function (response) {
                         console.log("Response", response);
+                        console.log("Response city: " + response.geoip.region);
                         var country = response.geoip.country;
                         console.log("Country", country);
                         var city = response.geoip.region;
@@ -437,7 +438,7 @@ $(document).ready(function () {
 
     $('body').on('click', '.clickableCard', function () {
         if ($(this).attr("dataname") === loteria.selectedObj.dataName) {
-            $("#" + this.id).parent().append('<span id="' + this.id + 'newElement' + '" class="bean img-responsive"><img src="assets/images/mr_bean.png" width="80%" height="80%" id="bean"></span>');
+            $("#" + this.id).parent().append('<span id="' + this.id + 'newElement' + '" class="bean img-responsive"><img src="assets/images/mr_bean.png" width="100%" height="100%" id="bean"></span>');
             $("#" + this.id).attr("class", "notClickableCard")
             $("#" + this.id).attr("style", "opacity: 0.3;")
 
