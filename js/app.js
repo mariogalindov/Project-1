@@ -342,7 +342,7 @@ $(document).ready(function () {
                 onGoingGame = true;
                 database.ref("loteria/onGoingGame").set(onGoingGame);
                 $.ajax({
-                    url: "http://api.ipstack.com/check?access_key=519155ab32a186184538b00e88906594",
+                    url: "https://api.ipstack.com/check?access_key=519155ab32a186184538b00e88906594",
                     method: "GET"
                 })
                     .then(function (response) {
