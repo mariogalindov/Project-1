@@ -200,47 +200,84 @@ $(document).ready(function () {
             loteria.miliseconds = 50;
             loteria.displaySelectedCard();
         },
-
     }
 
-    $('#nameInput').keyup(function () {
-        if ($(this).val().length != 0) {
-            $("#registerBtn").attr("class", "waves-effect waves-light btn-large");
-        } else {
-            $("#registerBtn").attr("class", "waves-effect waves-light btn-large disable");
-        }
-    });
-
+    // I need to check how to handle multiple element's with multiple events at the same time
     $('#nameInput').keypress(function (e) {
-        if (e.which == 13) {
+        var nameVal = $("#nameInput").val();
+        var numVal = $("#numOfUsersInput").val();
+        console.log(nameVal);
+        if (e.which == 13 && nameVal === "" && numVal < 2) {
+            alert("Please enter a name and a number of players of 2 or more");
+        } else if (e.which == 13 && nameVal === "" && numVal >= 2) {
+            alert("Please enter a name")
+        } else if (e.which == 13 && nameVal !== "" && numVal < 2) {
+            alert("Please enter a number of players of 2 or more")
+        } else if (e.which == 13 && nameVal !== "" && numVal >= 2) {
             registerPlayer()
         }
     });
 
     $('#numOfUsersInput').keypress(function (e) {
-        if (e.which == 13) {
+        var nameVal = $("#nameInput").val();
+        var numVal = $("#numOfUsersInput").val();
+        console.log(nameVal);
+        if (e.which == 13 && nameVal === "" && numVal < 2) {
+            alert("Please enter a name and a number of players of 2 or more");
+        } else if (e.which == 13 && nameVal === "" && numVal >= 2) {
+            alert("Please enter a name")
+        } else if (e.which == 13 && nameVal !== "" && numVal < 2) {
+            alert("Please enter a number of players of 2 or more")
+        } else if (e.which == 13 && nameVal !== "" && numVal >= 2) {
             registerPlayer()
         }
     });
 
-    $("#registerBtn").on("click", function () {
-        registerPlayer()
-    })
+    $('#nameInput').keyup(function () {
+        if ($(this).val().length !== 0 && $("#numOfUsersInput").val() >= 2) {
+            $("#registerBtn").attr("class", "waves-effect waves-light btn-large");
+        }  
+        else if ($(this).val().length === 0 || $("#numOfUsersInput").val() < 2 || $("#numOfUsersInput").val() === "") {
+            $("#registerBtn").attr("class", "waves-effect waves-light btn-large disable");
+        }
+        console.log($("#numOfUsersInput").val())
+    });
 
-    $("#startBtn").on("click", function () {
-        startGame()
-    })
+    $('#numOfUsersInput').keyup(function () {
+        if ($(this).val().length != 0 && $("#numOfUsersInput").val() >= 2) {
+            $("#registerBtn").attr("class", "waves-effect waves-light btn-large");
+        }  
+        else {
+            $("#registerBtn").attr("class", "waves-effect waves-light btn-large disable");
+        }
+    });
+
+    $("#numOfUsersInput").on("click", function() {
+        if ($(this).val().length != 0 && $("#numOfUsersInput").val() >= 2) {
+            $("#registerBtn").attr("class", "waves-effect waves-light btn-large");
+        }  
+    });
+
+    $("#registerBtn").on("click", function () {
+        if ($("#nameInput").val() !== "" && $("#numOfUsersInput") >= 2 ) {
+            registerPlayer()
+        }
+    });
+
+    // $("#startBtn").on("click", function () {
+    //     startGame()
+    // })
 
 
     // Firebase configuration
     var firebaseConfig = {
-        apiKey: "AIzaSyDphnl3y_pEJm9Lo3tGLqfW4vJGVFVTKq0",
-        authDomain: "bootcamp-15178.firebaseapp.com",
-        databaseURL: "https://bootcamp-15178.firebaseio.com",
-        projectId: "bootcamp-15178",
-        storageBucket: "bootcamp-15178.appspot.com",
-        messagingSenderId: "967695164094",
-        appId: "1:967695164094:web:e8633a18dea8efe8bfb4ef"
+        apiKey: "AIzaSyAIo73sgvgZoEap6atpVgYVBen7IHiG2zw",
+        authDomain: "bootcamp-take2-example.firebaseapp.com",
+        databaseURL: "https://bootcamp-take2-example.firebaseio.com",
+        projectId: "bootcamp-take2-example",
+        storageBucket: "bootcamp-take2-example.appspot.com",
+        messagingSenderId: "836834539838",
+        appId: "1:836834539838:web:51b4c334db163c00d9546f"
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
@@ -359,7 +396,6 @@ $(document).ready(function () {
         }
     });
 
-
     function registerPlayer() {
         $("#registerPlayers").attr("style", "display: block");
         $("#welcomeContainer").attr("style", "display: none");
@@ -389,9 +425,7 @@ $(document).ready(function () {
             database.ref("loteria/chat").set("");
             database.ref("loteria/onGoingGame").set(onGoingGame);
         }
-
-
-    }
+    };
 
     function startGame() {
         loteria.createSelectedOrder();
@@ -411,7 +445,7 @@ $(document).ready(function () {
 
     $("#sendBtn").on("click", function (event) {
         chat();
-    })
+    });
 
     function chat() {
         event.preventDefault();
